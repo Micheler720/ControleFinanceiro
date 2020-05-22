@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\ControleFinanceiro.Modelo.dll
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\ControleFinanceiro.Modelo.pdb
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.dll
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.pdb
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.csproj.CopyComplete
