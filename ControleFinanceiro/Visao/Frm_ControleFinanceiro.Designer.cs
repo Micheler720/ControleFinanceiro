@@ -108,7 +108,7 @@
             this.despesasFixasToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.GastosFixos;
             this.despesasFixasToolStripMenuItem.Name = "despesasFixasToolStripMenuItem";
             this.despesasFixasToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.despesasFixasToolStripMenuItem.Text = "Despesas Fixas";
+            this.despesasFixasToolStripMenuItem.Text = "Valores Fixos";
             this.despesasFixasToolStripMenuItem.Click += new System.EventHandler(this.despesasFixasToolStripMenuItem_Click);
             // 
             // movimentaçõesToolStripMenuItem
@@ -131,6 +131,7 @@
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
             this.entradasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.entradasToolStripMenuItem.Text = "Entradas";
+            this.entradasToolStripMenuItem.Click += new System.EventHandler(this.entradasToolStripMenuItem_Click);
             // 
             // saídasToolStripMenuItem
             // 

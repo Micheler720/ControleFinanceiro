@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Modelo.Modelo
 {
-    public class DespesasFixasModelo
+    public class ValoresFixosModelo
     {
         public string Nome { get; set; }
         public int Codigo { get; private set; }
         public double Valor { get; set; }
-        public DespesasFixasModelo(int codigo)
+        public bool Ativo { get; set; }
+        public string Movimentacao { get; set; }
+        public int CodigoEstabelecimento { get; set; }
+        public string Observacao { get; set; }
+        public ValoresFixosModelo(int codigo)
         {
             Codigo = codigo;
         }

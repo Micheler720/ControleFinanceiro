@@ -362,5 +362,10 @@ namespace ControleFinanceiro.Visao.Cadastros
             Grp_EnderecoEstabelecimento.AlterarBordaComponente(Cbo_Estado, Grp_DadosEstabelecimento.BackColor);
             Grp_DadosEstabelecimento.AlterarBordaComponente(Txt_NomeEstabelecimento, Grp_DadosEstabelecimento.BackColor);
         }
+
+        private void ajudaToolStripButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tela Referente a cadastro de Estabelecimentos. Exemplos: Supermercado, Academia, Lanchonete ...", "Ajuda - Controle Financeiro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

@@ -57,11 +57,11 @@
             this.Btn_Gravar = new System.Windows.Forms.Button();
             this.Tls_Principal = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.LblTitulo = new System.Windows.Forms.Label();
-            this.Lbl_Legenda = new System.Windows.Forms.Label();
             this.abrirToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.ajudaToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.LblTitulo = new System.Windows.Forms.Label();
+            this.Lbl_Legenda = new System.Windows.Forms.Label();
             this.Grp_DadosEstabelecimento.SuspendLayout();
             this.Grp_EnderecoEstabelecimento.SuspendLayout();
             this.Tls_Principal.SuspendLayout();
@@ -347,29 +347,6 @@
             this.toolStripButton1.Text = "toolStripButton1";
             this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1_Click);
             // 
-            // LblTitulo
-            // 
-            this.LblTitulo.AutoSize = true;
-            this.LblTitulo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.Location = new System.Drawing.Point(149, 25);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(209, 23);
-            this.LblTitulo.TabIndex = 12;
-            this.LblTitulo.Text = "Cadastro Estabelecimento";
-            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LblTitulo.Click += new System.EventHandler(this.LblTitulo_Click);
-            // 
-            // Lbl_Legenda
-            // 
-            this.Lbl_Legenda.AutoSize = true;
-            this.Lbl_Legenda.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Legenda.ForeColor = System.Drawing.Color.Green;
-            this.Lbl_Legenda.Location = new System.Drawing.Point(18, 354);
-            this.Lbl_Legenda.Name = "Lbl_Legenda";
-            this.Lbl_Legenda.Size = new System.Drawing.Size(48, 17);
-            this.Lbl_Legenda.TabIndex = 13;
-            this.Lbl_Legenda.Text = "label2";
-            // 
             // abrirToolStripButton
             // 
             this.abrirToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -392,6 +369,30 @@
             this.ajudaToolStripButton.Name = "ajudaToolStripButton";
             this.ajudaToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.ajudaToolStripButton.Text = "&Ajuda";
+            this.ajudaToolStripButton.Click += new System.EventHandler(this.ajudaToolStripButton_Click);
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.AutoSize = true;
+            this.LblTitulo.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.Location = new System.Drawing.Point(149, 25);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(209, 23);
+            this.LblTitulo.TabIndex = 12;
+            this.LblTitulo.Text = "Cadastro Estabelecimento";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LblTitulo.Click += new System.EventHandler(this.LblTitulo_Click);
+            // 
+            // Lbl_Legenda
+            // 
+            this.Lbl_Legenda.AutoSize = true;
+            this.Lbl_Legenda.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Legenda.ForeColor = System.Drawing.Color.Green;
+            this.Lbl_Legenda.Location = new System.Drawing.Point(18, 354);
+            this.Lbl_Legenda.Name = "Lbl_Legenda";
+            this.Lbl_Legenda.Size = new System.Drawing.Size(48, 17);
+            this.Lbl_Legenda.TabIndex = 13;
+            this.Lbl_Legenda.Text = "label2";
             // 
             // Frm_EstabelecimentoCadastro_UC
             // 

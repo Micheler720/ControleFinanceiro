@@ -163,5 +163,10 @@ namespace ControleFinanceiro.Visao.Cadastros
             Btn_Gravar.Enabled = false;
             Grp_TipoEstabelecimento.AlterarBordaComponente(Txt_Descricao, Grp_TipoEstabelecimento.BackColor);
         }
+
+        private void ajudaToolStripButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tela Referente a cadastro de tipo de estabelecimento. Exemplos: Lazer, Despesa, Investimento ...", "Ajuda - Controle Financeiro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

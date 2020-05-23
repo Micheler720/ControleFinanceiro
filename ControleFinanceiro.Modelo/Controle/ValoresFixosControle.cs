@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Modelo.Controle
 {
-    public class DespesasFixasControle
+    public class ValoresFixosControle
     {
-        public void validaDespesasFixas(DespesasFixasModelo DespesaFixa)
+        public void validaDespesasFixas(ValoresFixosModelo DespesaFixa)
         {
-            var DespesaFixaNegocio = new DespesasFixasNegocio();
+            var DespesaFixaNegocio = new ValoresFixosNegocio();
             DespesaFixaNegocio.ValidaDespesaFixa(DespesaFixa);
         }
     }

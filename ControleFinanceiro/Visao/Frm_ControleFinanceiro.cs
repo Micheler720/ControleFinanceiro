@@ -1,5 +1,6 @@
 ﻿using ControleFinanceiro.Modelo;
 using ControleFinanceiro.Visao.Cadastros;
+using ControleFinanceiro.Visao.Movimentacoes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -198,11 +199,23 @@ namespace ControleFinanceiro.Visao
 
         private void despesasFixasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var U = new Frm_DespesaFixasCadastro();
+            var U = new Frm_ValoresFixosCadastro();
             var TB = new TabPage();
             TB.Text = "Despesas Fixas";
             TB.Name = "Despesas Fixas";
             TB.ImageIndex = 7;
+            TB.Controls.Add(U);
+            Tbc_Aplicacoes.Controls.Add(TB);
+            SelecionarUltimaTabPage();
+        }
+
+        private void entradasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var U = new Frm_Entradas();
+            var TB = new TabPage();
+            TB.Text = "Entradas";
+            TB.Name = "Entradas";
+            TB.ImageIndex = 1;
             TB.Controls.Add(U);
             Tbc_Aplicacoes.Controls.Add(TB);
             SelecionarUltimaTabPage();

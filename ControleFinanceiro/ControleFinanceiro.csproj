@@ -57,11 +57,11 @@
     <Compile Include="Visao\Avisos\Frm_Aviso.Designer.cs">
       <DependentUpon>Frm_Aviso.cs</DependentUpon>
     </Compile>
-    <Compile Include="Visao\Cadastros\Frm_DespesaFixasCadastro.cs">
+    <Compile Include="Visao\Cadastros\Frm_ValoresFixosCadastro.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Visao\Cadastros\Frm_DespesaFixasCadastro.Designer.cs">
-      <DependentUpon>Frm_DespesaFixasCadastro.cs</DependentUpon>
+    <Compile Include="Visao\Cadastros\Frm_ValoresFixosCadastro.Designer.cs">
+      <DependentUpon>Frm_ValoresFixosCadastro.cs</DependentUpon>
     </Compile>
     <Compile Include="Visao\Cadastros\Frm_EstabelecimentoCadastro_UC.cs">
       <SubType>UserControl</SubType>
@@ -95,6 +95,12 @@
     <Compile Include="Visao\Frm_Login.Designer.cs">
       <DependentUpon>Frm_Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_Entradas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_Entradas.Designer.cs">
+      <DependentUpon>Frm_Entradas.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -108,8 +114,8 @@
     <EmbeddedResource Include="Visao\Avisos\Frm_Aviso.resx">
       <DependentUpon>Frm_Aviso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Visao\Cadastros\Frm_DespesaFixasCadastro.resx">
-      <DependentUpon>Frm_DespesaFixasCadastro.cs</DependentUpon>
+    <EmbeddedResource Include="Visao\Cadastros\Frm_ValoresFixosCadastro.resx">
+      <DependentUpon>Frm_ValoresFixosCadastro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Cadastros\Frm_EstabelecimentoCadastro_UC.resx">
       <DependentUpon>Frm_EstabelecimentoCadastro_UC.cs</DependentUpon>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Frm_Login.resx">
       <DependentUpon>Frm_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Movimentacoes\Frm_Entradas.resx">
+      <DependentUpon>Frm_Entradas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

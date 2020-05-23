@@ -14,20 +14,28 @@ using ControleFinanceiro.Visao.Avisos;
 
 namespace ControleFinanceiro.Visao.Cadastros
 {
-    public partial class Frm_DespesaFixasCadastro : UserControl
+    public partial class Frm_ValoresFixosCadastro : UserControl
     {
-        public Frm_DespesaFixasCadastro()
+        public Frm_ValoresFixosCadastro()
         {
             InitializeComponent();
             Lbl_Codigo.Text = "Codigo";
             Lbl_NomeDespesa.Text = "Descrição";
             Lbl_Valor.Text = "Valor";
+            Lbl_Observacao.Text = "Observação";
+            Lbl_TipoMovimentacao.Text = "Tipo Movimentação";
+            Lbl_Estabelecimento.Text = "Estabelecimento";
             Txt_Codigo.Enabled = false;
+            Ckb_AtivoInativo.Text = "Ativo";
             Btn_Editar.Text = "Editar";
             Btn_Excluir.Text = "Excluir";
             Btn_Novo.Text = "Novo";
             Btn_Gravar.Text = "Gravar";
+            Btn_BuscaEstabelecimento.Text = "...";
             Grp_DadosDespesaFixa.Text = "Cadastro Despesas Fixas";
+            Cbo_TipoMovimentacao.Items.Add("Entrada");
+            Cbo_TipoMovimentacao.Items.Add("Saída");
+            Cbo_TipoMovimentacao.SelectedItem = Cbo_TipoMovimentacao.Items[0];
             LimparFormulario();
         }
 
@@ -48,7 +56,12 @@ namespace ControleFinanceiro.Visao.Cadastros
             Btn_Gravar.Enabled = true;
             Btn_Novo.Enabled = false;
             Msk_Valor.Enabled = true;
-            
+            Cbo_TipoMovimentacao.Enabled = true;
+            Btn_BuscaEstabelecimento.Enabled = true;
+            Txt_CodigoEstabelecimento.Enabled = true;
+            Ckb_AtivoInativo.Enabled = true;
+            Txt_Observacao.Enabled = true;
+
         }
         private bool ValidaFormulario()
         {
@@ -63,6 +76,11 @@ namespace ControleFinanceiro.Visao.Cadastros
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_NomeDespesa, Color.Red);
                 temp += "Verifique a Descrição da Despesa. Tamanho maior que o permitido.\r\n";
             }
+            if(Txt_CodigoEstabelecimento.Text == "" || Txt_CodigoEstabelecimento.Text == "0")
+            {
+                Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_CodigoEstabelecimento, Color.Red);
+                temp += "Verifique o codigo do estabelecimento.\r\n";
+            }
             if(Msk_Valor.Text == "")
             {
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Color.Red);
@@ -71,6 +89,11 @@ namespace ControleFinanceiro.Visao.Cadastros
             {
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Color.Red);
                 temp += "Verifique o valor da Despesa. Não é possivel inserir despesa zerada.\r\n";
+            }
+            if(Txt_Observacao.Text.Length> 100)
+            {
+                Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_Observacao, Color.Red);
+                temp += "Verifique o campo observação. Não é possivel inserir mais de 100 caracteres.\r\n";
             }
             if(temp != "")
             {
@@ -93,8 +116,16 @@ namespace ControleFinanceiro.Visao.Cadastros
             Btn_Novo.Enabled = true;
             Txt_NomeDespesa.Enabled = false;
             Msk_Valor.Enabled = false;
+            Cbo_TipoMovimentacao.Enabled = false;
+            Btn_BuscaEstabelecimento.Enabled = false;
+            Txt_NomeEstabelecimento.Enabled = false;
+            Txt_CodigoEstabelecimento.Enabled = false;
+            Ckb_AtivoInativo.Checked = true;
+            Ckb_AtivoInativo.Enabled = false;
+            Txt_Observacao.Enabled = false;
             Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_NomeDespesa, Grp_DadosDespesaFixa.BackColor);
             Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Grp_DadosDespesaFixa.BackColor);
+            Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_CodigoEstabelecimento, Grp_DadosDespesaFixa.BackColor);
         }
 
         private void Grp_DadosDespesaFixa_Enter(object sender, EventArgs e)
@@ -106,10 +137,14 @@ namespace ControleFinanceiro.Visao.Cadastros
         {
             if (ValidaFormulario())
             {
-                var DespesaFixa = new DespesasFixasModelo(0);
-                DespesaFixa.Nome = Txt_NomeDespesa.Text;
-                DespesaFixa.Valor = double.Parse(Msk_Valor.Text);
-                var ControleDespesaFixa = new DespesasFixasControle();
+                var ValorFixo = new ValoresFixosModelo(0);
+                ValorFixo.Nome = Txt_NomeDespesa.Text;
+                ValorFixo.Valor = double.Parse(Msk_Valor.Text);
+                ValorFixo.Ativo = Ckb_AtivoInativo.Checked;
+                ValorFixo.CodigoEstabelecimento = int.Parse(Txt_CodigoEstabelecimento.Text);
+                ValorFixo.Movimentacao = Cbo_TipoMovimentacao.Text == "Entrada" ? "E" : "S";
+                ValorFixo.Observacao = Txt_Observacao.Text;
+                var ControleDespesaFixa = new ValoresFixosControle();
                 var M = new Frm_Aviso("Dados salvos com sucesso!!", "sucesso");
                 M.Show();
                 LimparFormulario();
@@ -143,6 +178,16 @@ namespace ControleFinanceiro.Visao.Cadastros
             {
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Color.Red);
             }
+        }
+
+        private void ajudaToolStripButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tela Referente a cadastro de Valores Fixos de Controle Financeiro. Os valores que estiverem ativos serão contabilizados na movimentação financeira do mês corrente.Exemplos: Salário, Aluguel, Supermercado, Luz ...", "Ajuda - Controle Financeiro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Msk_Valor_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

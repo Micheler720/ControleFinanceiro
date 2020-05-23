@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ControleFinanceiro.Modelo.Negocio
 {
-    internal class DespesasFixasNegocio
+    internal class ValoresFixosNegocio
     {
 
-        internal bool ValidaDespesaFixa(DespesasFixasModelo DespesaFixa)
+        internal bool ValidaDespesaFixa(ValoresFixosModelo DespesaFixa)
         {
             return true;
         }
