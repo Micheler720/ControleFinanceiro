@@ -198,11 +198,14 @@ namespace ControleFinanceiro.Visao
 
         private void despesasFixasToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var U = new Frm_DespesaFixasCadastro();
             var TB = new TabPage();
             TB.Text = "Despesas Fixas";
             TB.Name = "Despesas Fixas";
             TB.ImageIndex = 7;
+            TB.Controls.Add(U);
             Tbc_Aplicacoes.Controls.Add(TB);
+            SelecionarUltimaTabPage();
         }
     }
 }

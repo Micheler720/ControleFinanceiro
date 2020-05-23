@@ -18,3 +18,4 @@ C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\Cont
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.csproj.CopyComplete
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Cadastros.Frm_DespesaFixasCadastro.resources
