@@ -220,5 +220,17 @@ namespace ControleFinanceiro.Visao
             Tbc_Aplicacoes.Controls.Add(TB);
             SelecionarUltimaTabPage();
         }
+
+        private void saídasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var U = new Frm_Saidas();
+            var TB = new TabPage();
+            TB.Text = "Saídas";
+            TB.Name = "Saídas";
+            TB.ImageIndex = 9;
+            TB.Controls.Add(U);
+            Tbc_Aplicacoes.Controls.Add(TB);
+            SelecionarUltimaTabPage();
+        }
     }
 }

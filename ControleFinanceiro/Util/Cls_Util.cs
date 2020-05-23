@@ -49,6 +49,13 @@ namespace ControleFinanceiro.Util
             g.DrawRectangle(new Pen(cor, Espessura), componente.Location.X, componente.Location.Y, componente.Width, componente.Height);
              
         }
+        internal static void AlterarBordaComponente(this GroupBox elementoPai, DateTimePicker componente, Color cor)
+        {
+            float Espessura = (float)4.0;
+            Graphics g = elementoPai.CreateGraphics();
+            g.DrawRectangle(new Pen(cor, Espessura), componente.Location.X, componente.Location.Y, componente.Width, componente.Height);
+
+        }
         /*internal static void RemoverBordaComponente(this GroupBox elementoPai)
         {
             var g = elementoPai.CreateGraphics();

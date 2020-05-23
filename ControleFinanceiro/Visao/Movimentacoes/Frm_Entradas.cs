@@ -19,9 +19,13 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             InitializeComponent();
             Lbl_Codigo.Text = "Codigo";
-            Lbl_Estabelecimento.Text = "Estabelecimento";
-            Lbl_Valor.Text = "Valor";
+            Lbl_Estabelecimento.Text = "Estabelecimento *";
+            Lbl_Valor.Text = "Valor *";
             Lbl_Observacao.Text = "Observação";
+            Lbl_Data.Text = "Data *";
+            Lbl_Documento.Text = "Numero Doc. *";
+            Lbl_Titulo.Text = "Lançamentos de Entradas";
+            Lbl_Legenda.Text = "Campos com * são obrigátorios";
             Grp_DadosMovimentacoes.Text = "Dados Entrada";
             Btn_BuscaEstabelecimento.Text = "...";
             Btn_Editar.Text = "Editar";
@@ -40,6 +44,8 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Txt_Codigo.Enabled = false;
             Txt_NomeEstabelecimento.Text = "";
             Txt_Codigo.Text = "";
+            Txt_Documento.Text = "";
+            Msk_Valor.Text = "";
             Msk_CodigoEstabelecimento.Enabled = false;
             Msk_CodigoEstabelecimento.Text = "";
             Txt_NomeEstabelecimento.Enabled = false;
@@ -47,12 +53,18 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_BuscaEstabelecimento.Enabled = false;
             Txt_Observacao.Enabled = false;
             Msk_Valor.Enabled = false;
-            
+            Dat_DataLancamento.Enabled = false;
+            Txt_Documento.Enabled = false;
+            Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_Valor,Grp_DadosMovimentacoes.BackColor);
+            Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Grp_DadosMovimentacoes.BackColor);
+            Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento,Grp_DadosMovimentacoes.BackColor);
+            Grp_DadosMovimentacoes.AlterarBordaComponente(Dat_DataLancamento,Grp_DadosMovimentacoes.BackColor);
+
         }
         private bool ValidaFormulario()
         {
             var temp = "";
-            if(Msk_CodigoEstabelecimento.Text == "" || Msk_CodigoEstabelecimento.Text == "0")
+            if(Msk_CodigoEstabelecimento.Text == "" )
             {
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Color.Red);
                 temp += "Não é possivel inserir Entrada sem informação de Estabelecimento \r\n";
@@ -67,8 +79,12 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Observacao, Color.Red);
                 temp += "Não é possivel inserir observação com mais de 100 caracteres. Verifique! \r\n";
             }
-
-            if(temp != "")
+            if (Txt_Documento.Text.Length == 0 )
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Color.Red);
+                temp += "Verifique o numero do documento. \r\n";
+            }
+            if (temp != "")
             {
                 MessageBox.Show(temp, "Validação", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
@@ -94,13 +110,15 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Txt_Observacao.Enabled = true;
             Msk_Valor.Enabled = true;
             Msk_CodigoEstabelecimento.Enabled = true;
+            Dat_DataLancamento.Enabled = true;
+            Txt_Documento.Enabled = true;
         }
 
         private void Btn_Gravar_Click(object sender, EventArgs e)
         {
             if (ValidaFormulario())
             {
-                var codigo = int.Parse(Txt_Codigo.Text);
+                var codigo = 0;
                 var valor = double.Parse(Msk_Valor.Text);
                 var Entrada = new EntradasModelo(codigo,valor);
                 Entrada.CodEstabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
@@ -113,13 +131,42 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Msk_Valor_KeyUp(object sender, KeyEventArgs e)
         {
-            if(Msk_Valor.Text != "" || double.Parse(Msk_Valor.Text) > 0)
+            if(Msk_Valor.Text != "" )
             {
-                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Color.Green);
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_Valor,Color.Green);
+            }
+            else
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_Valor, Color.Red);
+            }
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Msk_CodigoEstabelecimento_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Msk_CodigoEstabelecimento.Text != "")
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Green);
             }
             else
             {
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Red);
+            }
+        }
+
+        private void Txt_Documento_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(Txt_Documento.Text.Length == 0)
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Color.Red);
+            }
+            else
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Color.Green);
             }
         }
     }

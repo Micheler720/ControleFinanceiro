@@ -9,6 +9,8 @@ namespace ControleFinanceiro.Modelo.Modelo
     public class EntradasModelo
     {
         public int Codigo { get; private set; }
+        public string Documento { get; set; }
+        public string DataLancamento { get; set; }
         public int CodEstabelecimento { get; set; }
         public double Valor { get; private set; }
         public string Observacao { get; set; }

@@ -135,9 +135,11 @@
             // 
             // saídasToolStripMenuItem
             // 
+            this.saídasToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.Saidas;
             this.saídasToolStripMenuItem.Name = "saídasToolStripMenuItem";
             this.saídasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saídasToolStripMenuItem.Text = "Saídas";
+            this.saídasToolStripMenuItem.Click += new System.EventHandler(this.saídasToolStripMenuItem_Click);
             // 
             // saldoToolStripMenuItem
             // 
@@ -180,6 +182,7 @@
             this.Iml_ListaTabPage.Images.SetKeyName(6, "Erro.png");
             this.Iml_ListaTabPage.Images.SetKeyName(7, "GastosFixos.png");
             this.Iml_ListaTabPage.Images.SetKeyName(8, "TipoEstabelecimento.png");
+            this.Iml_ListaTabPage.Images.SetKeyName(9, "Saidas.png");
             // 
             // Grp_Avatar
             // 
