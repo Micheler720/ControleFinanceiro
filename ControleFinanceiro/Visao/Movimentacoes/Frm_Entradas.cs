@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ControleFinanceiro.Util;
+using ControleFinanceiro.Modelo.Modelo;
+using ControleFinanceiro.Visao.Avisos;
 
 namespace ControleFinanceiro.Visao.Movimentacoes
 {
@@ -50,12 +52,12 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         private bool ValidaFormulario()
         {
             var temp = "";
-            if(Txt_Codigo.Text == "" || Txt_Codigo.Text == "0")
+            if(Msk_CodigoEstabelecimento.Text == "" || Msk_CodigoEstabelecimento.Text == "0")
             {
-                Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Codigo,Color.Red);
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Color.Red);
                 temp += "Não é possivel inserir Entrada sem informação de Estabelecimento \r\n";
             }
-            if(Msk_Valor.Text == "0" || Msk_Valor.Text == "0")
+            if(Msk_Valor.Text == "0" || Msk_Valor.Text == "")
             {
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_Valor, Color.Red);
                 temp += "Não é possivel inserir Entrada sem informação de valor \r\n";
@@ -82,6 +84,43 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             LimparFormulario();
+        }
+
+        private void Btn_Novo_Click(object sender, EventArgs e)
+        {
+            LimparFormulario();
+            Btn_Novo.Enabled = false;
+            Btn_Gravar.Enabled = true;
+            Txt_Observacao.Enabled = true;
+            Msk_Valor.Enabled = true;
+            Msk_CodigoEstabelecimento.Enabled = true;
+        }
+
+        private void Btn_Gravar_Click(object sender, EventArgs e)
+        {
+            if (ValidaFormulario())
+            {
+                var codigo = int.Parse(Txt_Codigo.Text);
+                var valor = double.Parse(Msk_Valor.Text);
+                var Entrada = new EntradasModelo(codigo,valor);
+                Entrada.CodEstabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
+                Entrada.Observacao = Txt_Observacao.Text;
+                var M = new Frm_Aviso("Dados Gravados com sucesso!", "sucesso");
+                M.ShowDialog();
+                LimparFormulario();
+            }
+        }
+
+        private void Msk_Valor_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(Msk_Valor.Text != "" || double.Parse(Msk_Valor.Text) > 0)
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Color.Green);
+            }
+            else
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Red);
+            }
         }
     }
 }

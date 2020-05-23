@@ -101,6 +101,7 @@
             this.Btn_Gravar.TabIndex = 16;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
+            this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
             // 
             // Btn_Excluir
             // 
@@ -119,6 +120,7 @@
             this.Btn_Novo.TabIndex = 14;
             this.Btn_Novo.Text = "button3";
             this.Btn_Novo.UseVisualStyleBackColor = true;
+            this.Btn_Novo.Click += new System.EventHandler(this.Btn_Novo_Click);
             // 
             // Btn_Editar
             // 
@@ -154,6 +156,7 @@
             this.Msk_Valor.Name = "Msk_Valor";
             this.Msk_Valor.Size = new System.Drawing.Size(100, 20);
             this.Msk_Valor.TabIndex = 8;
+            this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
             // Lbl_Valor
             // 
@@ -166,7 +169,7 @@
             // 
             // Btn_BuscaEstabelecimento
             // 
-            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(6, 74);
+            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(6, 76);
             this.Btn_BuscaEstabelecimento.Name = "Btn_BuscaEstabelecimento";
             this.Btn_BuscaEstabelecimento.Size = new System.Drawing.Size(37, 21);
             this.Btn_BuscaEstabelecimento.TabIndex = 5;
@@ -175,7 +178,7 @@
             // 
             // Txt_NomeEstabelecimento
             // 
-            this.Txt_NomeEstabelecimento.Location = new System.Drawing.Point(112, 73);
+            this.Txt_NomeEstabelecimento.Location = new System.Drawing.Point(112, 75);
             this.Txt_NomeEstabelecimento.Name = "Txt_NomeEstabelecimento";
             this.Txt_NomeEstabelecimento.Size = new System.Drawing.Size(334, 20);
             this.Txt_NomeEstabelecimento.TabIndex = 3;
@@ -207,7 +210,7 @@
             // 
             // Msk_CodigoEstabelecimento
             // 
-            this.Msk_CodigoEstabelecimento.Location = new System.Drawing.Point(47, 73);
+            this.Msk_CodigoEstabelecimento.Location = new System.Drawing.Point(47, 75);
             this.Msk_CodigoEstabelecimento.Name = "Msk_CodigoEstabelecimento";
             this.Msk_CodigoEstabelecimento.Size = new System.Drawing.Size(59, 20);
             this.Msk_CodigoEstabelecimento.TabIndex = 9;
