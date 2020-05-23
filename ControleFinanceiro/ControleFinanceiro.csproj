@@ -141,6 +141,9 @@
     <EmbeddedResource Include="Visao\Movimentacoes\Frm_Entradas.resx">
       <DependentUpon>Frm_Entradas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Movimentacoes\Frm_Saidas.resx">
+      <DependentUpon>Frm_Saidas.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
