@@ -232,5 +232,17 @@ namespace ControleFinanceiro.Visao
             Tbc_Aplicacoes.Controls.Add(TB);
             SelecionarUltimaTabPage();
         }
+
+        private void saldoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var U = new Frm_Saldo();
+            var TB = new TabPage();
+            TB.Text = "Saldo";
+            TB.Name = "Saldo";
+            TB.ImageIndex = 4;
+            TB.Controls.Add(U);
+            Tbc_Aplicacoes.Controls.Add(TB);
+            SelecionarUltimaTabPage();
+        }
     }
 }

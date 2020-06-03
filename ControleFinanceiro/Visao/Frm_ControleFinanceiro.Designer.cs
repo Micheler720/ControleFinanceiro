@@ -147,6 +147,7 @@
             this.saldoToolStripMenuItem.Name = "saldoToolStripMenuItem";
             this.saldoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saldoToolStripMenuItem.Text = "Saldo";
+            this.saldoToolStripMenuItem.Click += new System.EventHandler(this.saldoToolStripMenuItem_Click);
             // 
             // fecharAbaToolStripMenuItem
             // 

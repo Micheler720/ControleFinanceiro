@@ -107,6 +107,12 @@
     <Compile Include="Visao\Movimentacoes\Frm_Saidas.Designer.cs">
       <DependentUpon>Frm_Saidas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_Saldo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_Saldo.Designer.cs">
+      <DependentUpon>Frm_Saldo.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -143,6 +149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Movimentacoes\Frm_Saidas.resx">
       <DependentUpon>Frm_Saidas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Movimentacoes\Frm_Saldo.resx">
+      <DependentUpon>Frm_Saldo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -21,3 +21,4 @@ C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\Newt
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Cadastros.Frm_ValoresFixosCadastro.resources
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Movimentacoes.Frm_Entradas.resources
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Movimentacoes.Frm_Saidas.resources
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Movimentacoes.Frm_Saldo.resources
