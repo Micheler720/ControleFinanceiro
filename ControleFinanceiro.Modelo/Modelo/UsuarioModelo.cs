@@ -10,6 +10,7 @@ namespace ControleFinanceiro.Modelo
     {
         public string Usuario { get; private set; }
         public string Senha { get; private set; }
+        public int Id { get; private set; }
 
         public UsuarioModelo (string usuario, string senha)
         {
