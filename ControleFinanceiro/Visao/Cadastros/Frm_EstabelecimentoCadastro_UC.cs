@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ControleFinanceiro.Util;
 using ControleFinanceiro.Modelo;
+using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Excexoes;
 using ControleFinanceiro.Controle;
 using Microsoft.VisualBasic;
@@ -103,7 +104,7 @@ namespace ControleFinanceiro.Visao.Cadastros
                 {
                     var nomeEstabelecimento = Txt_NomeEstabelecimento.Text;
                     int tipoEstabelecimento = Cbo_TipoEstabelecimento.SelectedIndex;
-                    var Estabelecimento = new EstabelecimentoModelo.Unit(nomeEstabelecimento, tipoEstabelecimento)
+                    var Estabelecimento = new Estabelecimento()
                     {
                         Endereco = Txt_Endereco.Text,
                         Bairro = Txt_Bairro.Text,

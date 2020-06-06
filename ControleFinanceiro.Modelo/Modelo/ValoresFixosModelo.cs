@@ -8,16 +8,19 @@ namespace ControleFinanceiro.Modelo.Modelo
 {
     public class ValoresFixosModelo
     {
-        public string Nome { get; set; }
-        public int Codigo { get; private set; }
-        public double Valor { get; set; }
-        public bool Ativo { get; set; }
-        public string Movimentacao { get; set; }
-        public int CodigoEstabelecimento { get; set; }
-        public string Observacao { get; set; }
-        public ValoresFixosModelo(int codigo)
+        public class Unit
         {
-            Codigo = codigo;
+            public string Nome { get; set; }
+            public int Id { get; set; }
+            public double Valor { get; set; }
+            public bool Ativo { get; set; }
+            public string Movimentacao { get; set; }
+            public int CodigoEstabelecimento { get; set; }
+            public string Observacao { get; set; }
+        }
+        public class List
+        {
+            public List<Unit> ListEstabelecimento { get; set; }
         }
     }
 }

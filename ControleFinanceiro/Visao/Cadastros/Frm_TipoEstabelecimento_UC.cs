@@ -11,6 +11,8 @@ using ControleFinanceiro.Modelo;
 using ControleFinanceiro.Modelo.Excexoes;
 using ControleFinanceiro.Util;
 using ControleFinanceiro.Visao.Avisos;
+using ControleFinanceiro.Controle;
+using ControleFinanceiro.Modelo.Entidades;
 
 namespace ControleFinanceiro.Visao.Cadastros
 {
@@ -51,8 +53,11 @@ namespace ControleFinanceiro.Visao.Cadastros
             {
                 try
                 {
-                    var tipoEstabelecimento = new TipoEstabelecimentoModelo();
+                    var tipoEstabelecimento = new Tipo_Estabelecimento();
                     tipoEstabelecimento.Descricao = Txt_Descricao.Text;
+                    tipoEstabelecimento.Status = 1;
+                    var tipoEstabelecimentoControle = new TipoEstabelecimentoControle();
+                    tipoEstabelecimentoControle.validaTipoEstabelecimento(tipoEstabelecimento);
                     var M = new Frm_Aviso("Dados Gravados com Sucesso!", "sucesso");
                     M.ShowDialog();
                     LimparFormulario();

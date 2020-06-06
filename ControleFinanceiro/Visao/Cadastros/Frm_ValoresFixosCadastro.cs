@@ -11,6 +11,8 @@ using ControleFinanceiro.Util;
 using ControleFinanceiro.Modelo.Modelo;
 using ControleFinanceiro.Modelo.Controle;
 using ControleFinanceiro.Visao.Avisos;
+using ControleFinanceiro.Modelo.Entidades;
+using ControleFinanceiro.Visao.Filtros;
 
 namespace ControleFinanceiro.Visao.Cadastros
 {
@@ -137,7 +139,7 @@ namespace ControleFinanceiro.Visao.Cadastros
         {
             if (ValidaFormulario())
             {
-                var ValorFixo = new ValoresFixosModelo(0);
+                var ValorFixo = new Valores_Fixos();
                 ValorFixo.Nome = Txt_NomeDespesa.Text;
                 ValorFixo.Valor = double.Parse(Msk_Valor.Text);
                 ValorFixo.Ativo = Ckb_AtivoInativo.Checked;
@@ -145,6 +147,7 @@ namespace ControleFinanceiro.Visao.Cadastros
                 ValorFixo.Movimentacao = Cbo_TipoMovimentacao.Text == "Entrada" ? "E" : "S";
                 ValorFixo.Observacao = Txt_Observacao.Text;
                 var ControleDespesaFixa = new ValoresFixosControle();
+                ControleDespesaFixa.validaDespesasFixas(ValorFixo);
                 var M = new Frm_Aviso("Dados salvos com sucesso!!", "sucesso");
                 M.Show();
                 LimparFormulario();
@@ -188,6 +191,12 @@ namespace ControleFinanceiro.Visao.Cadastros
         private void Msk_Valor_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
+        {
+            var F = new Frm_BuscaEstabelecimento();
+            F.ShowDialog();
         }
     }
 }

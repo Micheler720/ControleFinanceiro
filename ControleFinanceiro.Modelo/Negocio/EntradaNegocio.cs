@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Modelo.Modelo;
+﻿using ControleFinanceiro.Modelo.Entidades;
+using ControleFinanceiro.Modelo.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace ControleFinanceiro.Modelo.Negocio
 {
     internal class EntradaNegocio
     {
-        internal bool ValidaEntradaNegocio(EntradasModelo entrada)
+        internal bool ValidaEntradaNegocio(Fin_Receber entrada)
         {
 
             return true;

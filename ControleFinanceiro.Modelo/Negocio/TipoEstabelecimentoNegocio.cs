@@ -1,4 +1,5 @@
 ﻿using ControleFinanceiro.Modelo;
+using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Excexoes;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ControleFinanceiro.Negocio
 {
     internal class TipoEstabelecimentoNegocio
     {
-        public bool validaTipoEstabelecimentoNegocio(TipoEstabelecimentoModelo estabelecimento)
+        public bool validaTipoEstabelecimentoNegocio(Tipo_Estabelecimento estabelecimento)
         {
             if(estabelecimento.Descricao == "")
             {

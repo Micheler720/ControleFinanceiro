@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Saidas));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.abrirToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ajudaToolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.Btn_Gravar = new System.Windows.Forms.Button();
             this.Btn_Excluir = new System.Windows.Forms.Button();
             this.Btn_Novo = new System.Windows.Forms.Button();
@@ -51,9 +54,8 @@
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Lbl_Legenda = new System.Windows.Forms.Label();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.abrirToolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.ajudaToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.Lbl_DataInclusao = new System.Windows.Forms.Label();
+            this.Dat_Inclusao = new System.Windows.Forms.DateTimePicker();
             this.toolStrip1.SuspendLayout();
             this.Grp_DadosMovimentacoes.SuspendLayout();
             this.SuspendLayout();
@@ -70,12 +72,41 @@
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::ControleFinanceiro.Properties.Resources.LimparBarra;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // abrirToolStripButton1
+            // 
+            this.abrirToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.abrirToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("abrirToolStripButton1.Image")));
+            this.abrirToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.abrirToolStripButton1.Name = "abrirToolStripButton1";
+            this.abrirToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.abrirToolStripButton1.Text = "&Abrir";
+            // 
+            // ajudaToolStripButton1
+            // 
+            this.ajudaToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ajudaToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("ajudaToolStripButton1.Image")));
+            this.ajudaToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ajudaToolStripButton1.Name = "ajudaToolStripButton1";
+            this.ajudaToolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.ajudaToolStripButton1.Text = "&Ajuda";
+            this.ajudaToolStripButton1.Click += new System.EventHandler(this.ajudaToolStripButton1_Click);
+            // 
             // Btn_Gravar
             // 
             this.Btn_Gravar.Location = new System.Drawing.Point(258, 335);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(87, 25);
-            this.Btn_Gravar.TabIndex = 1;
+            this.Btn_Gravar.TabIndex = 8;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
             this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
@@ -110,6 +141,8 @@
             // 
             // Grp_DadosMovimentacoes
             // 
+            this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_DataInclusao);
+            this.Grp_DadosMovimentacoes.Controls.Add(this.Dat_Inclusao);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Txt_Documento);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_Documento);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_Data);
@@ -151,7 +184,7 @@
             // Lbl_Data
             // 
             this.Lbl_Data.AutoSize = true;
-            this.Lbl_Data.Location = new System.Drawing.Point(252, 20);
+            this.Lbl_Data.Location = new System.Drawing.Point(359, 20);
             this.Lbl_Data.Name = "Lbl_Data";
             this.Lbl_Data.Size = new System.Drawing.Size(39, 14);
             this.Lbl_Data.TabIndex = 13;
@@ -160,7 +193,7 @@
             // Dat_DataLancamento
             // 
             this.Dat_DataLancamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Dat_DataLancamento.Location = new System.Drawing.Point(255, 40);
+            this.Dat_DataLancamento.Location = new System.Drawing.Point(362, 40);
             this.Dat_DataLancamento.Name = "Dat_DataLancamento";
             this.Dat_DataLancamento.Size = new System.Drawing.Size(103, 20);
             this.Dat_DataLancamento.TabIndex = 2;
@@ -180,14 +213,14 @@
             this.Txt_Observacao.Multiline = true;
             this.Txt_Observacao.Name = "Txt_Observacao";
             this.Txt_Observacao.Size = new System.Drawing.Size(509, 76);
-            this.Txt_Observacao.TabIndex = 5;
+            this.Txt_Observacao.TabIndex = 7;
             // 
             // Msk_CodigoEstabelecimento
             // 
             this.Msk_CodigoEstabelecimento.Location = new System.Drawing.Point(55, 83);
             this.Msk_CodigoEstabelecimento.Name = "Msk_CodigoEstabelecimento";
             this.Msk_CodigoEstabelecimento.Size = new System.Drawing.Size(68, 20);
-            this.Msk_CodigoEstabelecimento.TabIndex = 3;
+            this.Msk_CodigoEstabelecimento.TabIndex = 4;
             this.Msk_CodigoEstabelecimento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_CodigoEstabelecimento_KeyUp);
             // 
             // Msk_Valor
@@ -195,7 +228,7 @@
             this.Msk_Valor.Location = new System.Drawing.Point(10, 127);
             this.Msk_Valor.Name = "Msk_Valor";
             this.Msk_Valor.Size = new System.Drawing.Size(116, 20);
-            this.Msk_Valor.TabIndex = 4;
+            this.Msk_Valor.TabIndex = 6;
             this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
             // Lbl_Valor
@@ -209,19 +242,20 @@
             // 
             // Btn_BuscaEstabelecimento
             // 
-            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(7, 82);
+            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(7, 81);
             this.Btn_BuscaEstabelecimento.Name = "Btn_BuscaEstabelecimento";
             this.Btn_BuscaEstabelecimento.Size = new System.Drawing.Size(43, 23);
-            this.Btn_BuscaEstabelecimento.TabIndex = 5;
+            this.Btn_BuscaEstabelecimento.TabIndex = 3;
             this.Btn_BuscaEstabelecimento.Text = "button1";
             this.Btn_BuscaEstabelecimento.UseVisualStyleBackColor = true;
+            this.Btn_BuscaEstabelecimento.Click += new System.EventHandler(this.Btn_BuscaEstabelecimento_Click);
             // 
             // Txt_NomeEstabelecimento
             // 
             this.Txt_NomeEstabelecimento.Location = new System.Drawing.Point(131, 83);
             this.Txt_NomeEstabelecimento.Name = "Txt_NomeEstabelecimento";
             this.Txt_NomeEstabelecimento.Size = new System.Drawing.Size(389, 20);
-            this.Txt_NomeEstabelecimento.TabIndex = 3;
+            this.Txt_NomeEstabelecimento.TabIndex = 5;
             // 
             // Lbl_Estabelecimento
             // 
@@ -270,34 +304,22 @@
             this.Lbl_Legenda.TabIndex = 16;
             this.Lbl_Legenda.Text = "label1";
             // 
-            // toolStripButton1
+            // Lbl_DataInclusao
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::ControleFinanceiro.Properties.Resources.LimparBarra;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.Lbl_DataInclusao.AutoSize = true;
+            this.Lbl_DataInclusao.Location = new System.Drawing.Point(249, 20);
+            this.Lbl_DataInclusao.Name = "Lbl_DataInclusao";
+            this.Lbl_DataInclusao.Size = new System.Drawing.Size(39, 14);
+            this.Lbl_DataInclusao.TabIndex = 16;
+            this.Lbl_DataInclusao.Text = "label1";
             // 
-            // abrirToolStripButton1
+            // Dat_Inclusao
             // 
-            this.abrirToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.abrirToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("abrirToolStripButton1.Image")));
-            this.abrirToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.abrirToolStripButton1.Name = "abrirToolStripButton1";
-            this.abrirToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.abrirToolStripButton1.Text = "&Abrir";
-            // 
-            // ajudaToolStripButton1
-            // 
-            this.ajudaToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ajudaToolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("ajudaToolStripButton1.Image")));
-            this.ajudaToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ajudaToolStripButton1.Name = "ajudaToolStripButton1";
-            this.ajudaToolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.ajudaToolStripButton1.Text = "&Ajuda";
-            this.ajudaToolStripButton1.Click += new System.EventHandler(this.ajudaToolStripButton1_Click);
+            this.Dat_Inclusao.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Dat_Inclusao.Location = new System.Drawing.Point(252, 40);
+            this.Dat_Inclusao.Name = "Dat_Inclusao";
+            this.Dat_Inclusao.Size = new System.Drawing.Size(103, 20);
+            this.Dat_Inclusao.TabIndex = 15;
             // 
             // Frm_Saidas
             // 
@@ -351,5 +373,7 @@
         private System.Windows.Forms.Label Lbl_Legenda;
         private System.Windows.Forms.ToolStripButton abrirToolStripButton1;
         private System.Windows.Forms.ToolStripButton ajudaToolStripButton1;
+        private System.Windows.Forms.Label Lbl_DataInclusao;
+        private System.Windows.Forms.DateTimePicker Dat_Inclusao;
     }
 }

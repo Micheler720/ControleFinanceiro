@@ -74,8 +74,8 @@
             // cadastrosToolStripMenuItem
             // 
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.estabelecimentosToolStripMenuItem,
             this.tipoEstabelecimentoToolStripMenuItem,
+            this.estabelecimentosToolStripMenuItem,
             this.despesasFixasToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cadastrosToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.Cadastros;
@@ -129,7 +129,7 @@
             // 
             this.entradasToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.Entradas;
             this.entradasToolStripMenuItem.Name = "entradasToolStripMenuItem";
-            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entradasToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.entradasToolStripMenuItem.Text = "Entradas";
             this.entradasToolStripMenuItem.Click += new System.EventHandler(this.entradasToolStripMenuItem_Click);
             // 
@@ -137,7 +137,7 @@
             // 
             this.saídasToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.Saidas;
             this.saídasToolStripMenuItem.Name = "saídasToolStripMenuItem";
-            this.saídasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saídasToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.saídasToolStripMenuItem.Text = "Saídas";
             this.saídasToolStripMenuItem.Click += new System.EventHandler(this.saídasToolStripMenuItem_Click);
             // 
@@ -145,7 +145,7 @@
             // 
             this.saldoToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.Saldo;
             this.saldoToolStripMenuItem.Name = "saldoToolStripMenuItem";
-            this.saldoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saldoToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.saldoToolStripMenuItem.Text = "Saldo";
             this.saldoToolStripMenuItem.Click += new System.EventHandler(this.saldoToolStripMenuItem_Click);
             // 

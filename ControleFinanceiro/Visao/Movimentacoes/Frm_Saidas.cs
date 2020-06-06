@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using ControleFinanceiro.Util;
 using ControleFinanceiro.Visao.Avisos;
 using ControleFinanceiro.Modelo.Modelo;
+using ControleFinanceiro.Visao.Filtros;
+using ControleFinanceiro.Modelo.Entidades;
+using ControleFinanceiro.Modelo.Controle;
 
 namespace ControleFinanceiro.Visao.Movimentacoes
 {
@@ -32,6 +35,8 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Excluir.Text = "Excluir";
             Btn_Novo.Text = "Novo";
             Btn_Gravar.Text = "Gravar";
+            Dat_Inclusao.Enabled = false;
+            Lbl_DataInclusao.Text = "Data Inclusao";
             Btn_BuscaEstabelecimento.Text = "...";
             LimparFormulario();
         }
@@ -118,17 +123,26 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             if (ValidaFormulario())
             {
-                var codigo = 0;
-                var valor = double.Parse(Msk_Valor.Text);
-                var Saida = new SaidasModelo(codigo, valor);
-                Saida.CodEstabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
-                Saida.Observacao = Txt_Observacao.Text;
-                Saida.Documento = Txt_Documento.Text;
-                Saida.DataLancamento = Dat_DataLancamento.Text;
+                var saida = CapturarValor();
+                var controleSaida = new FinPagarControle();
+                controleSaida.ValidaSaida(saida);
                 var M = new Frm_Aviso("Dados Gravados com sucesso!", "sucesso");
                 M.ShowDialog();
                 LimparFormulario();
             }
+        }
+        private Fin_Pagar CapturarValor()
+        {
+            var valor = double.Parse(Msk_Valor.Text);
+            var Saida = new Fin_Pagar();
+            Saida.Cod_Estabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
+            Saida.Observacao = Txt_Observacao.Text;
+            Saida.Documento = Txt_Documento.Text;
+            Saida.Data_Lancamento = Dat_DataLancamento.Value;
+            Saida.Data_Inclusao = DateTime.Now;
+            Saida.Valor = valor;
+            return Saida;
+
         }
 
         private void Msk_Valor_KeyUp(object sender, KeyEventArgs e)
@@ -165,6 +179,12 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             {
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Color.Green);
             }
+        }
+
+        private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
+        {
+            var F = new Frm_BuscaEstabelecimento();
+            F.ShowDialog();
         }
     }
 }

@@ -42,17 +42,17 @@
             this.Lbl_Codigo = new System.Windows.Forms.Label();
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Grp_DadosDespesaFixa = new System.Windows.Forms.GroupBox();
-            this.Msk_Valor = new System.Windows.Forms.MaskedTextBox();
-            this.Lbl_Valor = new System.Windows.Forms.Label();
+            this.Lbl_Observacao = new System.Windows.Forms.Label();
+            this.Txt_Observacao = new System.Windows.Forms.TextBox();
+            this.Ckb_AtivoInativo = new System.Windows.Forms.CheckBox();
+            this.Lbl_TipoMovimentacao = new System.Windows.Forms.Label();
+            this.Cbo_TipoMovimentacao = new System.Windows.Forms.ComboBox();
             this.Btn_BuscaEstabelecimento = new System.Windows.Forms.Button();
             this.Txt_CodigoEstabelecimento = new System.Windows.Forms.TextBox();
             this.Txt_NomeEstabelecimento = new System.Windows.Forms.TextBox();
             this.Lbl_Estabelecimento = new System.Windows.Forms.Label();
-            this.Cbo_TipoMovimentacao = new System.Windows.Forms.ComboBox();
-            this.Lbl_TipoMovimentacao = new System.Windows.Forms.Label();
-            this.Ckb_AtivoInativo = new System.Windows.Forms.CheckBox();
-            this.Txt_Observacao = new System.Windows.Forms.TextBox();
-            this.Lbl_Observacao = new System.Windows.Forms.Label();
+            this.Msk_Valor = new System.Windows.Forms.MaskedTextBox();
+            this.Lbl_Valor = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.Grp_DadosDespesaFixa.SuspendLayout();
             this.SuspendLayout();
@@ -195,23 +195,49 @@
             this.Grp_DadosDespesaFixa.Text = "groupBox1";
             this.Grp_DadosDespesaFixa.Enter += new System.EventHandler(this.Grp_DadosDespesaFixa_Enter);
             // 
-            // Msk_Valor
+            // Lbl_Observacao
             // 
-            this.Msk_Valor.Location = new System.Drawing.Point(341, 140);
-            this.Msk_Valor.Name = "Msk_Valor";
-            this.Msk_Valor.Size = new System.Drawing.Size(100, 20);
-            this.Msk_Valor.TabIndex = 17;
-            this.Msk_Valor.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Msk_Valor_MaskInputRejected);
-            this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
+            this.Lbl_Observacao.AutoSize = true;
+            this.Lbl_Observacao.Location = new System.Drawing.Point(9, 171);
+            this.Lbl_Observacao.Name = "Lbl_Observacao";
+            this.Lbl_Observacao.Size = new System.Drawing.Size(35, 13);
+            this.Lbl_Observacao.TabIndex = 26;
+            this.Lbl_Observacao.Text = "label1";
             // 
-            // Lbl_Valor
+            // Txt_Observacao
             // 
-            this.Lbl_Valor.AutoSize = true;
-            this.Lbl_Valor.Location = new System.Drawing.Point(338, 124);
-            this.Lbl_Valor.Name = "Lbl_Valor";
-            this.Lbl_Valor.Size = new System.Drawing.Size(35, 13);
-            this.Lbl_Valor.TabIndex = 16;
-            this.Lbl_Valor.Text = "label2";
+            this.Txt_Observacao.Location = new System.Drawing.Point(9, 187);
+            this.Txt_Observacao.Multiline = true;
+            this.Txt_Observacao.Name = "Txt_Observacao";
+            this.Txt_Observacao.Size = new System.Drawing.Size(432, 76);
+            this.Txt_Observacao.TabIndex = 25;
+            // 
+            // Ckb_AtivoInativo
+            // 
+            this.Ckb_AtivoInativo.AutoSize = true;
+            this.Ckb_AtivoInativo.Location = new System.Drawing.Point(270, 51);
+            this.Ckb_AtivoInativo.Name = "Ckb_AtivoInativo";
+            this.Ckb_AtivoInativo.Size = new System.Drawing.Size(80, 17);
+            this.Ckb_AtivoInativo.TabIndex = 24;
+            this.Ckb_AtivoInativo.Text = "checkBox1";
+            this.Ckb_AtivoInativo.UseVisualStyleBackColor = true;
+            // 
+            // Lbl_TipoMovimentacao
+            // 
+            this.Lbl_TipoMovimentacao.AutoSize = true;
+            this.Lbl_TipoMovimentacao.Location = new System.Drawing.Point(130, 30);
+            this.Lbl_TipoMovimentacao.Name = "Lbl_TipoMovimentacao";
+            this.Lbl_TipoMovimentacao.Size = new System.Drawing.Size(35, 13);
+            this.Lbl_TipoMovimentacao.TabIndex = 23;
+            this.Lbl_TipoMovimentacao.Text = "label1";
+            // 
+            // Cbo_TipoMovimentacao
+            // 
+            this.Cbo_TipoMovimentacao.FormattingEnabled = true;
+            this.Cbo_TipoMovimentacao.Location = new System.Drawing.Point(129, 49);
+            this.Cbo_TipoMovimentacao.Name = "Cbo_TipoMovimentacao";
+            this.Cbo_TipoMovimentacao.Size = new System.Drawing.Size(121, 21);
+            this.Cbo_TipoMovimentacao.TabIndex = 22;
             // 
             // Btn_BuscaEstabelecimento
             // 
@@ -221,6 +247,7 @@
             this.Btn_BuscaEstabelecimento.TabIndex = 21;
             this.Btn_BuscaEstabelecimento.Text = "button1";
             this.Btn_BuscaEstabelecimento.UseVisualStyleBackColor = true;
+            this.Btn_BuscaEstabelecimento.Click += new System.EventHandler(this.Btn_BuscaEstabelecimento_Click);
             // 
             // Txt_CodigoEstabelecimento
             // 
@@ -245,49 +272,23 @@
             this.Lbl_Estabelecimento.TabIndex = 18;
             this.Lbl_Estabelecimento.Text = "label1";
             // 
-            // Cbo_TipoMovimentacao
+            // Msk_Valor
             // 
-            this.Cbo_TipoMovimentacao.FormattingEnabled = true;
-            this.Cbo_TipoMovimentacao.Location = new System.Drawing.Point(129, 49);
-            this.Cbo_TipoMovimentacao.Name = "Cbo_TipoMovimentacao";
-            this.Cbo_TipoMovimentacao.Size = new System.Drawing.Size(121, 21);
-            this.Cbo_TipoMovimentacao.TabIndex = 22;
+            this.Msk_Valor.Location = new System.Drawing.Point(341, 140);
+            this.Msk_Valor.Name = "Msk_Valor";
+            this.Msk_Valor.Size = new System.Drawing.Size(100, 20);
+            this.Msk_Valor.TabIndex = 17;
+            this.Msk_Valor.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Msk_Valor_MaskInputRejected);
+            this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
-            // Lbl_TipoMovimentacao
+            // Lbl_Valor
             // 
-            this.Lbl_TipoMovimentacao.AutoSize = true;
-            this.Lbl_TipoMovimentacao.Location = new System.Drawing.Point(130, 30);
-            this.Lbl_TipoMovimentacao.Name = "Lbl_TipoMovimentacao";
-            this.Lbl_TipoMovimentacao.Size = new System.Drawing.Size(35, 13);
-            this.Lbl_TipoMovimentacao.TabIndex = 23;
-            this.Lbl_TipoMovimentacao.Text = "label1";
-            // 
-            // Ckb_AtivoInativo
-            // 
-            this.Ckb_AtivoInativo.AutoSize = true;
-            this.Ckb_AtivoInativo.Location = new System.Drawing.Point(270, 51);
-            this.Ckb_AtivoInativo.Name = "Ckb_AtivoInativo";
-            this.Ckb_AtivoInativo.Size = new System.Drawing.Size(80, 17);
-            this.Ckb_AtivoInativo.TabIndex = 24;
-            this.Ckb_AtivoInativo.Text = "checkBox1";
-            this.Ckb_AtivoInativo.UseVisualStyleBackColor = true;
-            // 
-            // Txt_Observacao
-            // 
-            this.Txt_Observacao.Location = new System.Drawing.Point(9, 187);
-            this.Txt_Observacao.Multiline = true;
-            this.Txt_Observacao.Name = "Txt_Observacao";
-            this.Txt_Observacao.Size = new System.Drawing.Size(432, 76);
-            this.Txt_Observacao.TabIndex = 25;
-            // 
-            // Lbl_Observacao
-            // 
-            this.Lbl_Observacao.AutoSize = true;
-            this.Lbl_Observacao.Location = new System.Drawing.Point(9, 171);
-            this.Lbl_Observacao.Name = "Lbl_Observacao";
-            this.Lbl_Observacao.Size = new System.Drawing.Size(35, 13);
-            this.Lbl_Observacao.TabIndex = 26;
-            this.Lbl_Observacao.Text = "label1";
+            this.Lbl_Valor.AutoSize = true;
+            this.Lbl_Valor.Location = new System.Drawing.Point(338, 124);
+            this.Lbl_Valor.Name = "Lbl_Valor";
+            this.Lbl_Valor.Size = new System.Drawing.Size(35, 13);
+            this.Lbl_Valor.TabIndex = 16;
+            this.Lbl_Valor.Text = "label2";
             // 
             // Frm_ValoresFixosCadastro
             // 

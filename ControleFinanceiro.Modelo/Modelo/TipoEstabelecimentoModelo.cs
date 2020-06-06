@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.CodeDom;
+using ControleFinanceiro.Modelo.Entidades;
+using Google.Protobuf.WellKnownTypes;
 
 namespace ControleFinanceiro.Modelo
 {
-    public class TipoEstabelecimentoModelo
+    public class TipoEstabelecimentoModelo 
     {
-        //[Required(ErrorMessage ="Impossivel inserir Tipo estabelecimento sem codigo")]
-        //[Range(0,int.MaxValue, ErrorMessage ="Código permitido apenas números inteiros")]
-        public int Codigo { get; private set; }
-        //[Required(ErrorMessage = "Impossivel inserir Tipo estabelecimento sem nome")]
-        //[StringLength(50,ErrorMessage ="Descrição permitido maximo de 50 caracteres.")]
-        public string Descricao { get; set; }
-
-
-
+        public class Unit
+        {
+        }
+        public class List
+        {
+            public List<Unit> ListTipoEstabelecimento { get; set; }
+        }
     }
 }

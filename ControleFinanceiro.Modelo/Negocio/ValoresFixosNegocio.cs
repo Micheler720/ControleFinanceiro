@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Modelo.Modelo;
+﻿using ControleFinanceiro.Modelo.Entidades;
+using ControleFinanceiro.Modelo.Modelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ControleFinanceiro.Modelo.Negocio
     internal class ValoresFixosNegocio
     {
 
-        internal bool ValidaDespesaFixa(ValoresFixosModelo DespesaFixa)
+        internal bool ValidaDespesaFixa(Valores_Fixos DespesaFixa)
         {
             return true;
         }

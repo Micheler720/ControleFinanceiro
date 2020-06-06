@@ -54,6 +54,8 @@
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Lbl_Legenda = new System.Windows.Forms.Label();
+            this.Lbl_DataInclusao = new System.Windows.Forms.Label();
+            this.Dat_Inclusão = new System.Windows.Forms.DateTimePicker();
             this.toolStrip1.SuspendLayout();
             this.Grp_DadosMovimentacoes.SuspendLayout();
             this.SuspendLayout();
@@ -104,7 +106,7 @@
             this.Btn_Gravar.Location = new System.Drawing.Point(258, 335);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(87, 25);
-            this.Btn_Gravar.TabIndex = 1;
+            this.Btn_Gravar.TabIndex = 8;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
             this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
@@ -139,6 +141,8 @@
             // 
             // Grp_DadosMovimentacoes
             // 
+            this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_DataInclusao);
+            this.Grp_DadosMovimentacoes.Controls.Add(this.Dat_Inclusão);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Txt_Documento);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_Documento);
             this.Grp_DadosMovimentacoes.Controls.Add(this.Lbl_Data);
@@ -156,7 +160,7 @@
             this.Grp_DadosMovimentacoes.Location = new System.Drawing.Point(14, 50);
             this.Grp_DadosMovimentacoes.Name = "Grp_DadosMovimentacoes";
             this.Grp_DadosMovimentacoes.Size = new System.Drawing.Size(527, 256);
-            this.Grp_DadosMovimentacoes.TabIndex = 17;
+            this.Grp_DadosMovimentacoes.TabIndex = 7;
             this.Grp_DadosMovimentacoes.TabStop = false;
             this.Grp_DadosMovimentacoes.Text = "groupBox1";
             // 
@@ -165,7 +169,7 @@
             this.Txt_Documento.Location = new System.Drawing.Point(131, 40);
             this.Txt_Documento.Name = "Txt_Documento";
             this.Txt_Documento.Size = new System.Drawing.Size(116, 20);
-            this.Txt_Documento.TabIndex = 15;
+            this.Txt_Documento.TabIndex = 1;
             this.Txt_Documento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txt_Documento_KeyUp);
             // 
             // Lbl_Documento
@@ -180,7 +184,7 @@
             // Lbl_Data
             // 
             this.Lbl_Data.AutoSize = true;
-            this.Lbl_Data.Location = new System.Drawing.Point(252, 20);
+            this.Lbl_Data.Location = new System.Drawing.Point(361, 20);
             this.Lbl_Data.Name = "Lbl_Data";
             this.Lbl_Data.Size = new System.Drawing.Size(39, 14);
             this.Lbl_Data.TabIndex = 13;
@@ -189,10 +193,10 @@
             // Dat_DataLancamento
             // 
             this.Dat_DataLancamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Dat_DataLancamento.Location = new System.Drawing.Point(255, 40);
+            this.Dat_DataLancamento.Location = new System.Drawing.Point(364, 40);
             this.Dat_DataLancamento.Name = "Dat_DataLancamento";
             this.Dat_DataLancamento.Size = new System.Drawing.Size(103, 20);
-            this.Dat_DataLancamento.TabIndex = 1;
+            this.Dat_DataLancamento.TabIndex = 2;
             this.Dat_DataLancamento.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // Lbl_Observacao
@@ -210,14 +214,14 @@
             this.Txt_Observacao.Multiline = true;
             this.Txt_Observacao.Name = "Txt_Observacao";
             this.Txt_Observacao.Size = new System.Drawing.Size(509, 76);
-            this.Txt_Observacao.TabIndex = 4;
+            this.Txt_Observacao.TabIndex = 7;
             // 
             // Msk_CodigoEstabelecimento
             // 
             this.Msk_CodigoEstabelecimento.Location = new System.Drawing.Point(55, 81);
             this.Msk_CodigoEstabelecimento.Name = "Msk_CodigoEstabelecimento";
             this.Msk_CodigoEstabelecimento.Size = new System.Drawing.Size(68, 20);
-            this.Msk_CodigoEstabelecimento.TabIndex = 2;
+            this.Msk_CodigoEstabelecimento.TabIndex = 4;
             this.Msk_CodigoEstabelecimento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_CodigoEstabelecimento_KeyUp);
             // 
             // Msk_Valor
@@ -225,7 +229,7 @@
             this.Msk_Valor.Location = new System.Drawing.Point(10, 127);
             this.Msk_Valor.Name = "Msk_Valor";
             this.Msk_Valor.Size = new System.Drawing.Size(116, 20);
-            this.Msk_Valor.TabIndex = 3;
+            this.Msk_Valor.TabIndex = 6;
             this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
             // Lbl_Valor
@@ -239,19 +243,20 @@
             // 
             // Btn_BuscaEstabelecimento
             // 
-            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(7, 82);
+            this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(7, 79);
             this.Btn_BuscaEstabelecimento.Name = "Btn_BuscaEstabelecimento";
             this.Btn_BuscaEstabelecimento.Size = new System.Drawing.Size(43, 23);
-            this.Btn_BuscaEstabelecimento.TabIndex = 5;
+            this.Btn_BuscaEstabelecimento.TabIndex = 3;
             this.Btn_BuscaEstabelecimento.Text = "button1";
             this.Btn_BuscaEstabelecimento.UseVisualStyleBackColor = true;
+            this.Btn_BuscaEstabelecimento.Click += new System.EventHandler(this.Btn_BuscaEstabelecimento_Click);
             // 
             // Txt_NomeEstabelecimento
             // 
             this.Txt_NomeEstabelecimento.Location = new System.Drawing.Point(131, 81);
             this.Txt_NomeEstabelecimento.Name = "Txt_NomeEstabelecimento";
             this.Txt_NomeEstabelecimento.Size = new System.Drawing.Size(389, 20);
-            this.Txt_NomeEstabelecimento.TabIndex = 3;
+            this.Txt_NomeEstabelecimento.TabIndex = 5;
             // 
             // Lbl_Estabelecimento
             // 
@@ -299,6 +304,23 @@
             this.Lbl_Legenda.Size = new System.Drawing.Size(48, 17);
             this.Lbl_Legenda.TabIndex = 16;
             this.Lbl_Legenda.Text = "label1";
+            // 
+            // Lbl_DataInclusao
+            // 
+            this.Lbl_DataInclusao.AutoSize = true;
+            this.Lbl_DataInclusao.Location = new System.Drawing.Point(250, 20);
+            this.Lbl_DataInclusao.Name = "Lbl_DataInclusao";
+            this.Lbl_DataInclusao.Size = new System.Drawing.Size(39, 14);
+            this.Lbl_DataInclusao.TabIndex = 16;
+            this.Lbl_DataInclusao.Text = "label1";
+            // 
+            // Dat_Inclusão
+            // 
+            this.Dat_Inclusão.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Dat_Inclusão.Location = new System.Drawing.Point(253, 40);
+            this.Dat_Inclusão.Name = "Dat_Inclusão";
+            this.Dat_Inclusão.Size = new System.Drawing.Size(103, 20);
+            this.Dat_Inclusão.TabIndex = 15;
             // 
             // Frm_Entradas
             // 
@@ -352,5 +374,7 @@
         private System.Windows.Forms.Label Lbl_Documento;
         private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.Label Lbl_Legenda;
+        private System.Windows.Forms.Label Lbl_DataInclusao;
+        private System.Windows.Forms.DateTimePicker Dat_Inclusão;
     }
 }
