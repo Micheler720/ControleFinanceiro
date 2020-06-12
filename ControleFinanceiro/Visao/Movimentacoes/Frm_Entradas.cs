@@ -13,11 +13,14 @@ using ControleFinanceiro.Visao.Avisos;
 using ControleFinanceiro.Visao.Filtros;
 using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Controle;
+using ControleFinanceiro.Controle;
 
 namespace ControleFinanceiro.Visao.Movimentacoes
 {
     public partial class Frm_Entradas : UserControl
     {
+        private Fin_Receber Lancamento { get; set; }
+        private string Operacao { get; set; }
         public Frm_Entradas()
         {
             InitializeComponent();
@@ -38,6 +41,8 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_BuscaEstabelecimento.Text = "...";
             Lbl_DataInclusao.Text = "Data Inclusão";
             Dat_Inclusão.Enabled = false;
+            Btn_Cancelar.Enabled = false;
+            Btn_Cancelar.Text = "Cancelar";
             LimparFormulario();
         }
         private void LimparFormulario()
@@ -65,6 +70,17 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento,Grp_DadosMovimentacoes.BackColor);
             Grp_DadosMovimentacoes.AlterarBordaComponente(Dat_DataLancamento,Grp_DadosMovimentacoes.BackColor);
 
+        }
+        private void HabilitarDesabilitarComponentes(bool valor)
+        {
+
+            Msk_CodigoEstabelecimento.Enabled = valor;
+            Txt_NomeEstabelecimento.Enabled = valor;
+            Btn_BuscaEstabelecimento.Enabled = valor;
+            Txt_Observacao.Enabled = valor;
+            Msk_Valor.Enabled = valor;
+            Dat_DataLancamento.Enabled = valor;
+            Txt_Documento.Enabled = valor;
         }
         private bool ValidaFormulario()
         {
@@ -109,10 +125,12 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Btn_Novo_Click(object sender, EventArgs e)
         {
+            Operacao = "Novo";
             LimparFormulario();
             Btn_Novo.Enabled = false;
             Btn_Gravar.Enabled = true;
             Btn_BuscaEstabelecimento.Enabled = true;
+            Btn_Cancelar.Enabled = true;
             Txt_Observacao.Enabled = true;
             Msk_Valor.Enabled = true;
             Msk_CodigoEstabelecimento.Enabled = true;
@@ -124,23 +142,35 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             if (ValidaFormulario())
             {
-                var Entrada = CapturarCampos();
+                var Entrada = CapturarFormulario();
                 var controleEntrada = new FinReceberControle();
-                controleEntrada.ValidaEntrada(Entrada);
-                var M = new Frm_Aviso("Dados Gravados com sucesso!", "sucesso");
+                if (Operacao == "Novo")
+                {
+                    controleEntrada.GravarEntrada(Entrada);
+                }
+                else
+                {
+                    Entrada.Id = Convert.ToInt32(Txt_Codigo.Text);
+                    controleEntrada.AlterarEntrada(Entrada);
+                }                                
+                var M = new Frm_Aviso(controleEntrada.Mensagem, "sucesso");
                 M.ShowDialog();
                 LimparFormulario();
+                HabilitarDesabilitarComponentes(false);
             }
         }
-        private Fin_Receber CapturarCampos()
+        private Fin_Receber CapturarFormulario()
         {
             var valor = double.Parse(Msk_Valor.Text);
             var Entrada = new Fin_Receber();
+            var idEstabelecimento = Convert.ToInt32(Msk_CodigoEstabelecimento.Text);
+            var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(idEstabelecimento);
             Entrada.Valor = valor;
             Entrada.Data_Lancamento = Dat_DataLancamento.Value;
             Entrada.Data_Inclusao = DateTime.Now;
-            Entrada.Cod_Estabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
             Entrada.Observacao = Txt_Observacao.Text;
+            Entrada.Documento = Txt_Documento.Text;
+            Entrada.Estabelecimento = estabelecimento;
             return Entrada;
         }
 
@@ -187,8 +217,79 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
         {
-            var F = new Frm_BuscaEstabelecimento();
+            var controleEstabelecimento = new EstabelecimentoControle();
+            var estabelecimentos = controleEstabelecimento.BuscarEstabelecimento();
+            var F = new Frm_BuscaEstabelecimento(estabelecimentos);
             F.ShowDialog();
+            Txt_NomeEstabelecimento.Text =  F.NomeEstabelecimento;
+            Msk_CodigoEstabelecimento.Text = F.IdSelect.ToString();
+        }
+
+        private void abrirToolStripButton_Click(object sender, EventArgs e)
+        {
+            var F = new Frm_BuscaLancamento(1);
+            F.ShowDialog();
+            if (F.DialogResult == DialogResult.OK) {
+                var IdLancamento = F.IdLancamento;
+                var controleFinanceiro = new FinReceberControle();
+                Lancamento = controleFinanceiro.BuscarFinanceiroId(IdLancamento);
+                PreencherFormulario();
+                Btn_Novo.Enabled = true;
+                Btn_Gravar.Enabled = false;
+                Btn_Excluir.Enabled = true;
+                Btn_Editar.Enabled = true;
+                Btn_Cancelar.Enabled = false;
+                HabilitarDesabilitarComponentes(false);
+            }
+        }
+        private void PreencherFormulario()
+        {
+            if(Lancamento != null)
+            {
+                Txt_Codigo.Text = Lancamento.Id.ToString();
+                Txt_Documento.Text = Lancamento.Documento;
+                Txt_NomeEstabelecimento.Text = Lancamento.Estabelecimento.Nome;
+                Txt_Observacao.Text = Lancamento.Observacao;
+                Dat_DataLancamento.Value = Lancamento.Data_Lancamento;
+                Dat_Inclusão.Value = Lancamento.Data_Inclusao;
+                Msk_Valor.Text = Lancamento.Valor.ToString();
+                Msk_CodigoEstabelecimento.Text = Lancamento.Estabelecimento.Id.ToString();
+            }
+        }
+
+        private void Btn_Editar_Click(object sender, EventArgs e)
+        {
+            Operacao = "Editar";
+            Btn_Cancelar.Enabled = true;
+            Btn_Editar.Enabled = false;
+            Btn_Excluir.Enabled = false;
+            Btn_Gravar.Enabled = true;
+            Btn_Novo.Enabled = false;
+            HabilitarDesabilitarComponentes(true);
+        }
+
+        private void Btn_Excluir_Click(object sender, EventArgs e)
+        {
+            var M = MessageBox.Show("Deseja realmente excluir o lançamento?", "Questao", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if(M == DialogResult.OK)
+            {
+                var Entrada = CapturarFormulario();
+                Entrada.Id = Convert.ToInt32(Txt_Codigo.Text);
+                var controleFinanceiro = new FinReceberControle();
+                controleFinanceiro.ExcluirEntrada(Entrada);
+                MessageBox.Show(controleFinanceiro.Mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimparFormulario();
+            }
+        }
+
+        private void Btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            var M = MessageBox.Show("Deseja realmente cancelar o lancamento?", "Questão",MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if(M == DialogResult.OK)
+            {
+                LimparFormulario();
+                HabilitarDesabilitarComponentes(false);
+            }
         }
     }
 }

@@ -79,7 +79,7 @@
             this.Txt_Descricao.Location = new System.Drawing.Point(7, 98);
             this.Txt_Descricao.Name = "Txt_Descricao";
             this.Txt_Descricao.Size = new System.Drawing.Size(402, 20);
-            this.Txt_Descricao.TabIndex = 3;
+            this.Txt_Descricao.TabIndex = 1;
             this.Txt_Descricao.TextChanged += new System.EventHandler(this.Txt_Descricao_TextChanged);
             // 
             // Btn_Editar
@@ -117,7 +117,7 @@
             this.Btn_Gravar.Location = new System.Drawing.Point(197, 187);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(75, 23);
-            this.Btn_Gravar.TabIndex = 8;
+            this.Btn_Gravar.TabIndex = 2;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
             this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
@@ -165,6 +165,7 @@
             this.abrirToolStripButton.Name = "abrirToolStripButton";
             this.abrirToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.abrirToolStripButton.Text = "&Abrir";
+            this.abrirToolStripButton.Click += new System.EventHandler(this.abrirToolStripButton_Click);
             // 
             // ajudaToolStripButton
             // 

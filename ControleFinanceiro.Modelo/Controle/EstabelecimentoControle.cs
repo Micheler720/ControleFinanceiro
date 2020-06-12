@@ -14,18 +14,71 @@ namespace ControleFinanceiro.Controle
 {
     public class EstabelecimentoControle
     {
-        public void controleCadastroEstabelecimento(Estabelecimento estabelecimento)
+        public string Mensagem;
+        public void GravarCadastroEstabelecimento(Estabelecimento estabelecimento)
         {
 
             var EstabelecimentoNegocio = new EstabelecimentoNegocio();
             if (EstabelecimentoNegocio.ValidaCadastroEstabelecimento(estabelecimento))
             {
-                NHibernateHelper.GeraSchema();
                 var session = NHibernateHelper.AbreSession();
                 var estabelecimentoDAO = new EstabelecimentoDAO(session);
                 estabelecimentoDAO.Adiciona(estabelecimento);
                 session.Close();
+                Mensagem = "Dados gravados com sucesso";
             } 
+        }
+        public void AlterarCadastroEstabelecimento(Estabelecimento estabelecimento)
+        {
+
+            var EstabelecimentoNegocio = new EstabelecimentoNegocio();
+            if (EstabelecimentoNegocio.ValidaCadastroEstabelecimento(estabelecimento))
+            {
+                var session = NHibernateHelper.AbreSession();
+                var estabelecimentoDAO = new EstabelecimentoDAO(session);
+                estabelecimentoDAO.Alterar(estabelecimento);
+                session.Close();
+                Mensagem = "Dados alterados com sucesso";
+            }
+        }
+
+        public void ExcluirCadastroEstabelecimento(Estabelecimento estabelecimento)
+        {
+
+            var EstabelecimentoNegocio = new EstabelecimentoNegocio();
+            if (EstabelecimentoNegocio.ValidaCadastroEstabelecimento(estabelecimento))
+            {
+                var session = NHibernateHelper.AbreSession();
+                var estabelecimentoDAO = new EstabelecimentoDAO(session);
+                estabelecimentoDAO.Excluir(estabelecimento);
+                session.Close();
+                Mensagem = "Dados excluídos com sucesso";
+            }
+        }
+        public static Estabelecimento BuscarEstabelecimentoId(int id)
+        {
+            var session = NHibernateHelper.AbreSession();
+            var estabelecimentoDAO = new EstabelecimentoDAO(session);
+            var estabeleciemnto = estabelecimentoDAO.BuscarPorId(id);
+            session.Close();
+            return estabeleciemnto;
+        }
+        public List<Estabelecimento> BuscarEstabelecimento()
+        {
+            var session = NHibernateHelper.AbreSession();
+            var estabelecimentoDAO = new EstabelecimentoDAO(session);
+            var estabeleciemntos = estabelecimentoDAO.BuscarEstabelecimentos();
+            //Console.WriteLine(estabeleciemntos[0].Nome);
+            session.Close();
+            return estabeleciemntos;
+        }
+        public List<Estabelecimento> BuscarEstabelecimentoNome(string nome)
+        {
+            var session = NHibernateHelper.AbreSession();
+            var estabelecimentoDAO = new EstabelecimentoDAO(session);
+            var estabeleciemntos = estabelecimentoDAO.BuscarEstabelecimentoNome(nome);
+            session.Close();
+            return estabeleciemntos;
         }
     }
 }

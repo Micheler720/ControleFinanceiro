@@ -62,6 +62,7 @@
             this.ajudaToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.LblTitulo = new System.Windows.Forms.Label();
             this.Lbl_Legenda = new System.Windows.Forms.Label();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Grp_DadosEstabelecimento.SuspendLayout();
             this.Grp_EnderecoEstabelecimento.SuspendLayout();
             this.Tls_Principal.SuspendLayout();
@@ -287,7 +288,7 @@
             // 
             // Btn_Novo
             // 
-            this.Btn_Novo.Location = new System.Drawing.Point(354, 372);
+            this.Btn_Novo.Location = new System.Drawing.Point(283, 372);
             this.Btn_Novo.Name = "Btn_Novo";
             this.Btn_Novo.Size = new System.Drawing.Size(75, 23);
             this.Btn_Novo.TabIndex = 6;
@@ -297,16 +298,17 @@
             // 
             // Btn_Excluir
             // 
-            this.Btn_Excluir.Location = new System.Drawing.Point(435, 372);
+            this.Btn_Excluir.Location = new System.Drawing.Point(364, 372);
             this.Btn_Excluir.Name = "Btn_Excluir";
             this.Btn_Excluir.Size = new System.Drawing.Size(75, 23);
             this.Btn_Excluir.TabIndex = 8;
             this.Btn_Excluir.Text = "button3";
             this.Btn_Excluir.UseVisualStyleBackColor = true;
+            this.Btn_Excluir.Click += new System.EventHandler(this.Btn_Excluir_Click);
             // 
             // Btn_Editar
             // 
-            this.Btn_Editar.Location = new System.Drawing.Point(192, 372);
+            this.Btn_Editar.Location = new System.Drawing.Point(121, 372);
             this.Btn_Editar.Name = "Btn_Editar";
             this.Btn_Editar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Editar.TabIndex = 9;
@@ -316,7 +318,7 @@
             // 
             // Btn_Gravar
             // 
-            this.Btn_Gravar.Location = new System.Drawing.Point(273, 372);
+            this.Btn_Gravar.Location = new System.Drawing.Point(202, 372);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Gravar.TabIndex = 11;
@@ -355,6 +357,7 @@
             this.abrirToolStripButton.Name = "abrirToolStripButton";
             this.abrirToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.abrirToolStripButton.Text = "&Abrir";
+            this.abrirToolStripButton.Click += new System.EventHandler(this.abrirToolStripButton_Click);
             // 
             // toolStripSeparator
             // 
@@ -394,10 +397,21 @@
             this.Lbl_Legenda.TabIndex = 13;
             this.Lbl_Legenda.Text = "label2";
             // 
+            // Btn_Cancelar
+            // 
+            this.Btn_Cancelar.Location = new System.Drawing.Point(439, 372);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Cancelar.TabIndex = 14;
+            this.Btn_Cancelar.Text = "button3";
+            this.Btn_Cancelar.UseVisualStyleBackColor = true;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
+            // 
             // Frm_EstabelecimentoCadastro_UC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Lbl_Legenda);
             this.Controls.Add(this.LblTitulo);
             this.Controls.Add(this.Tls_Principal);
@@ -456,5 +470,6 @@
         private System.Windows.Forms.ToolStripButton abrirToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripButton ajudaToolStripButton;
+        private System.Windows.Forms.Button Btn_Cancelar;
     }
 }

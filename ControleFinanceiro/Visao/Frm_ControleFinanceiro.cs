@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Modelo;
+﻿using ControleFinanceiro.Controle;
+using ControleFinanceiro.Modelo;
 using ControleFinanceiro.Visao.Cadastros;
 using ControleFinanceiro.Visao.Movimentacoes;
 using System;
@@ -52,7 +53,9 @@ namespace ControleFinanceiro.Visao
 
         private void estabelecimentosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var U = new Frm_EstabelecimentoCadastro_UC();
+            var controleTipoEstabelecimento = new TipoEstabelecimentoControle();
+            var tipoEstabelecimento = controleTipoEstabelecimento.BuscarTipoEstabelecimento();
+            var U = new Frm_EstabelecimentoCadastro_UC(tipoEstabelecimento);
             var TB = new TabPage();
             TB.Name = "Cadastro de Estabelecimento";
             TB.Text = "Cadastro de Estabelecimento";
@@ -61,6 +64,7 @@ namespace ControleFinanceiro.Visao
             Tbc_Aplicacoes.TabPages.Add(TB);
             SelecionarUltimaTabPage();
         }
+        
 
         private void tipoEstabelecimentoToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -38,6 +38,8 @@
             this.Btn_Novo = new System.Windows.Forms.Button();
             this.Btn_Editar = new System.Windows.Forms.Button();
             this.Grp_DadosMovimentacoes = new System.Windows.Forms.GroupBox();
+            this.Lbl_DataInclusao = new System.Windows.Forms.Label();
+            this.Dat_Inclusão = new System.Windows.Forms.DateTimePicker();
             this.Txt_Documento = new System.Windows.Forms.TextBox();
             this.Lbl_Documento = new System.Windows.Forms.Label();
             this.Lbl_Data = new System.Windows.Forms.Label();
@@ -54,8 +56,7 @@
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Lbl_Legenda = new System.Windows.Forms.Label();
-            this.Lbl_DataInclusao = new System.Windows.Forms.Label();
-            this.Dat_Inclusão = new System.Windows.Forms.DateTimePicker();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.Grp_DadosMovimentacoes.SuspendLayout();
             this.SuspendLayout();
@@ -90,6 +91,7 @@
             this.abrirToolStripButton.Name = "abrirToolStripButton";
             this.abrirToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.abrirToolStripButton.Text = "&Abrir";
+            this.abrirToolStripButton.Click += new System.EventHandler(this.abrirToolStripButton_Click);
             // 
             // ajudaToolStripButton
             // 
@@ -103,7 +105,7 @@
             // 
             // Btn_Gravar
             // 
-            this.Btn_Gravar.Location = new System.Drawing.Point(258, 335);
+            this.Btn_Gravar.Location = new System.Drawing.Point(164, 335);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(87, 25);
             this.Btn_Gravar.TabIndex = 8;
@@ -113,16 +115,17 @@
             // 
             // Btn_Excluir
             // 
-            this.Btn_Excluir.Location = new System.Drawing.Point(447, 335);
+            this.Btn_Excluir.Location = new System.Drawing.Point(353, 335);
             this.Btn_Excluir.Name = "Btn_Excluir";
             this.Btn_Excluir.Size = new System.Drawing.Size(87, 25);
             this.Btn_Excluir.TabIndex = 15;
             this.Btn_Excluir.Text = "button4";
             this.Btn_Excluir.UseVisualStyleBackColor = true;
+            this.Btn_Excluir.Click += new System.EventHandler(this.Btn_Excluir_Click);
             // 
             // Btn_Novo
             // 
-            this.Btn_Novo.Location = new System.Drawing.Point(352, 335);
+            this.Btn_Novo.Location = new System.Drawing.Point(258, 335);
             this.Btn_Novo.Name = "Btn_Novo";
             this.Btn_Novo.Size = new System.Drawing.Size(87, 25);
             this.Btn_Novo.TabIndex = 14;
@@ -132,12 +135,13 @@
             // 
             // Btn_Editar
             // 
-            this.Btn_Editar.Location = new System.Drawing.Point(163, 335);
+            this.Btn_Editar.Location = new System.Drawing.Point(69, 335);
             this.Btn_Editar.Name = "Btn_Editar";
             this.Btn_Editar.Size = new System.Drawing.Size(87, 25);
             this.Btn_Editar.TabIndex = 13;
             this.Btn_Editar.Text = "button2";
             this.Btn_Editar.UseVisualStyleBackColor = true;
+            this.Btn_Editar.Click += new System.EventHandler(this.Btn_Editar_Click);
             // 
             // Grp_DadosMovimentacoes
             // 
@@ -163,6 +167,23 @@
             this.Grp_DadosMovimentacoes.TabIndex = 7;
             this.Grp_DadosMovimentacoes.TabStop = false;
             this.Grp_DadosMovimentacoes.Text = "groupBox1";
+            // 
+            // Lbl_DataInclusao
+            // 
+            this.Lbl_DataInclusao.AutoSize = true;
+            this.Lbl_DataInclusao.Location = new System.Drawing.Point(250, 20);
+            this.Lbl_DataInclusao.Name = "Lbl_DataInclusao";
+            this.Lbl_DataInclusao.Size = new System.Drawing.Size(39, 14);
+            this.Lbl_DataInclusao.TabIndex = 16;
+            this.Lbl_DataInclusao.Text = "label1";
+            // 
+            // Dat_Inclusão
+            // 
+            this.Dat_Inclusão.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Dat_Inclusão.Location = new System.Drawing.Point(253, 40);
+            this.Dat_Inclusão.Name = "Dat_Inclusão";
+            this.Dat_Inclusão.Size = new System.Drawing.Size(103, 20);
+            this.Dat_Inclusão.TabIndex = 15;
             // 
             // Txt_Documento
             // 
@@ -286,8 +307,9 @@
             // Lbl_Titulo
             // 
             this.Lbl_Titulo.AutoSize = true;
+            this.Lbl_Titulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lbl_Titulo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo.Location = new System.Drawing.Point(216, 26);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(0, 25);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
             this.Lbl_Titulo.Size = new System.Drawing.Size(46, 18);
             this.Lbl_Titulo.TabIndex = 18;
@@ -305,27 +327,21 @@
             this.Lbl_Legenda.TabIndex = 16;
             this.Lbl_Legenda.Text = "label1";
             // 
-            // Lbl_DataInclusao
+            // Btn_Cancelar
             // 
-            this.Lbl_DataInclusao.AutoSize = true;
-            this.Lbl_DataInclusao.Location = new System.Drawing.Point(250, 20);
-            this.Lbl_DataInclusao.Name = "Lbl_DataInclusao";
-            this.Lbl_DataInclusao.Size = new System.Drawing.Size(39, 14);
-            this.Lbl_DataInclusao.TabIndex = 16;
-            this.Lbl_DataInclusao.Text = "label1";
-            // 
-            // Dat_Inclusão
-            // 
-            this.Dat_Inclusão.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Dat_Inclusão.Location = new System.Drawing.Point(253, 40);
-            this.Dat_Inclusão.Name = "Dat_Inclusão";
-            this.Dat_Inclusão.Size = new System.Drawing.Size(103, 20);
-            this.Dat_Inclusão.TabIndex = 15;
+            this.Btn_Cancelar.Location = new System.Drawing.Point(446, 335);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(87, 25);
+            this.Btn_Cancelar.TabIndex = 19;
+            this.Btn_Cancelar.Text = "button4";
+            this.Btn_Cancelar.UseVisualStyleBackColor = true;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
             // Frm_Entradas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Lbl_Legenda);
             this.Controls.Add(this.Lbl_Titulo);
             this.Controls.Add(this.Grp_DadosMovimentacoes);
@@ -376,5 +392,6 @@
         private System.Windows.Forms.Label Lbl_Legenda;
         private System.Windows.Forms.Label Lbl_DataInclusao;
         private System.Windows.Forms.DateTimePicker Dat_Inclusão;
+        private System.Windows.Forms.Button Btn_Cancelar;
     }
 }

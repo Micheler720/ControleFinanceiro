@@ -1,4 +1,5 @@
-﻿using ControleFinanceiro.Visao;
+﻿using ControleFinanceiro.Modelo.Helpers;
+using ControleFinanceiro.Visao;
 using System;
 using System.Collections.Generic;
 using System.Linq;

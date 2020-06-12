@@ -13,11 +13,16 @@ using ControleFinanceiro.Modelo.Controle;
 using ControleFinanceiro.Visao.Avisos;
 using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Visao.Filtros;
+using ControleFinanceiro.Modelo.Helpers;
+using ControleFinanceiro.Modelo.DAO;
+using Org.BouncyCastle.Crypto.Tls;
+using ControleFinanceiro.Controle;
 
 namespace ControleFinanceiro.Visao.Cadastros
 {
     public partial class Frm_ValoresFixosCadastro : UserControl
     {
+        private string Operacao;
         public Frm_ValoresFixosCadastro()
         {
             InitializeComponent();
@@ -39,6 +44,12 @@ namespace ControleFinanceiro.Visao.Cadastros
             Cbo_TipoMovimentacao.Items.Add("Saída");
             Cbo_TipoMovimentacao.SelectedItem = Cbo_TipoMovimentacao.Items[0];
             LimparFormulario();
+            Btn_Novo.Enabled = true;
+            Btn_Gravar.Enabled = false;
+            Btn_Excluir.Enabled = false;
+            Btn_Editar.Enabled = false;
+            Btn_Cancelar.Enabled = false;
+            Btn_Cancelar.Text = "Cancelar";
         }
 
         private void Btn_Excluir_Click(object sender, EventArgs e)
@@ -46,24 +57,41 @@ namespace ControleFinanceiro.Visao.Cadastros
             var M = MessageBox.Show("Deseja realmente excluir o cadastro?", "Informação", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             if(M == DialogResult.OK)
             {
-                MessageBox.Show("Dados Excluídos com sucesso", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var controleValoresFixos = new ValoresFixosControle();
+                var valorFixo = CapturarFormulario();
+                valorFixo.Id = int.Parse(Txt_Codigo.Text);
+                controleValoresFixos.ExcluirDespesaFixas(valorFixo);
+                MessageBox.Show(controleValoresFixos.Mensagem, "Exclusão - Valor Fixo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Btn_Cancelar.Enabled = false;
+                Btn_Editar.Enabled = false;
+                Btn_Excluir.Enabled = false;
+                Btn_Gravar.Enabled = false;
+                Btn_Novo.Enabled = true;
+                LimparFormulario();
+                HabilitarDesabilitarCampos(false);
             }
         }
 
         private void Btn_Novo_Click(object sender, EventArgs e)
         {
-            Txt_NomeDespesa.Enabled = true;
+            Operacao = "Novo";
             Btn_Editar.Enabled = false;
             Btn_Excluir.Enabled = false;
             Btn_Gravar.Enabled = true;
             Btn_Novo.Enabled = false;
-            Msk_Valor.Enabled = true;
-            Cbo_TipoMovimentacao.Enabled = true;
-            Btn_BuscaEstabelecimento.Enabled = true;
-            Txt_CodigoEstabelecimento.Enabled = true;
-            Ckb_AtivoInativo.Enabled = true;
-            Txt_Observacao.Enabled = true;
+            Btn_Cancelar.Enabled = true;
+            HabilitarDesabilitarCampos(true);
 
+        }
+        private void HabilitarDesabilitarCampos(bool valor)
+        {
+            Txt_NomeDespesa.Enabled = valor;
+            Msk_Valor.Enabled = valor;
+            Cbo_TipoMovimentacao.Enabled = valor;
+            Btn_BuscaEstabelecimento.Enabled = valor;
+            Txt_CodigoEstabelecimento.Enabled = valor;
+            Ckb_AtivoInativo.Enabled = valor;
+            Txt_Observacao.Enabled = valor;
         }
         private bool ValidaFormulario()
         {
@@ -112,10 +140,9 @@ namespace ControleFinanceiro.Visao.Cadastros
             Txt_Codigo.Text = "";
             Txt_NomeDespesa.Text = "";
             Msk_Valor.Text = "";
-            Btn_Editar.Enabled = false;
-            Btn_Excluir.Enabled = false;
-            Btn_Gravar.Enabled = false;
-            Btn_Novo.Enabled = true;
+            Txt_CodigoEstabelecimento.Text = "";
+            Txt_NomeEstabelecimento.Text = "";
+            Txt_Observacao.Text = "";
             Txt_NomeDespesa.Enabled = false;
             Msk_Valor.Enabled = false;
             Cbo_TipoMovimentacao.Enabled = false;
@@ -139,19 +166,39 @@ namespace ControleFinanceiro.Visao.Cadastros
         {
             if (ValidaFormulario())
             {
-                var ValorFixo = new Valores_Fixos();
-                ValorFixo.Nome = Txt_NomeDespesa.Text;
-                ValorFixo.Valor = double.Parse(Msk_Valor.Text);
-                ValorFixo.Ativo = Ckb_AtivoInativo.Checked;
-                ValorFixo.CodigoEstabelecimento = int.Parse(Txt_CodigoEstabelecimento.Text);
-                ValorFixo.Movimentacao = Cbo_TipoMovimentacao.Text == "Entrada" ? "E" : "S";
-                ValorFixo.Observacao = Txt_Observacao.Text;
+                var ValorFixo = CapturarFormulario();
                 var ControleDespesaFixa = new ValoresFixosControle();
-                ControleDespesaFixa.validaDespesasFixas(ValorFixo);
-                var M = new Frm_Aviso("Dados salvos com sucesso!!", "sucesso");
+                if (Operacao == "Novo")
+                {
+                    ControleDespesaFixa.GravarDespesasFixas(ValorFixo);
+                }
+                else
+                {
+                    ValorFixo.Id = int.Parse(Txt_Codigo.Text);
+                    ControleDespesaFixa.AlterarDespesasFixas(ValorFixo);
+                }
+                var M = new Frm_Aviso(ControleDespesaFixa.Mensagem, "sucesso");
                 M.Show();
                 LimparFormulario();
+                Btn_Cancelar.Enabled = false;
+                Btn_Editar.Enabled = false;
+                Btn_Excluir.Enabled = false;
+                Btn_Gravar.Enabled = false;
+                Btn_Novo.Enabled = true;
             }
+        }
+        private Valores_Fixos CapturarFormulario()
+        {
+            var idEstabelecimento = int.Parse(Txt_CodigoEstabelecimento.Text);
+            var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(idEstabelecimento);
+            var ValorFixo = new Valores_Fixos();
+            ValorFixo.Nome = Txt_NomeDespesa.Text;
+            ValorFixo.Valor = double.Parse(Msk_Valor.Text);
+            ValorFixo.Ativo = Ckb_AtivoInativo.Checked;
+            ValorFixo.Movimentacao = Cbo_TipoMovimentacao.Text == "Entrada" ? "E" : "S";
+            ValorFixo.Observacao = Txt_Observacao.Text;
+            ValorFixo.Estabelecimento = estabelecimento;
+            return ValorFixo;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -195,8 +242,90 @@ namespace ControleFinanceiro.Visao.Cadastros
 
         private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
         {
-            var F = new Frm_BuscaEstabelecimento();
-            F.ShowDialog();
+            var contEstabelecimento = new EstabelecimentoControle();
+            var estabelecimentos = contEstabelecimento.BuscarEstabelecimento();
+            var F = new Frm_BuscaEstabelecimento(estabelecimentos);
+            var M = F.ShowDialog();
+            if(M == DialogResult.OK)
+            {
+                Txt_CodigoEstabelecimento.Text = F.IdSelect.ToString();
+                Txt_NomeEstabelecimento.Text = F.NomeEstabelecimento;
+            }
+        }
+
+        private void Txt_CodigoEstabelecimento_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.KeyValue == 13)
+            {
+                var id = int.Parse(Txt_CodigoEstabelecimento.Text);
+                var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(id);
+                if(estabelecimento != null)
+                {
+                    Txt_NomeEstabelecimento.Text = estabelecimento.Nome;
+                    Txt_CodigoEstabelecimento.Text = estabelecimento.Id.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Não foi encontrado Estabelecimento para código informado. Verifique!", "Cadastro - Valores Fixos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void Btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            var M = MessageBox.Show("Deseja realmente cancelar a inclusão do lançamento?", "Cadastro - Valores Fixos", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if(M == DialogResult.OK)
+            {
+                LimparFormulario();
+                HabilitarDesabilitarCampos(false);
+                Btn_Cancelar.Enabled = false;
+                Btn_Editar.Enabled = false;
+                Btn_Excluir.Enabled = false;
+                Btn_Gravar.Enabled = false;
+                Btn_Novo.Enabled = true;
+            }
+        }
+
+        private void Btn_Editar_Click(object sender, EventArgs e)
+        {
+            Operacao = "Editar";
+            Btn_Cancelar.Enabled = true;
+            Btn_Editar.Enabled = false;
+            Btn_Excluir.Enabled = false;
+            Btn_Gravar.Enabled = true;
+            Btn_Novo.Enabled = false;
+            HabilitarDesabilitarCampos(true);
+        }
+
+        private void abrirToolStripButton_Click(object sender, EventArgs e)
+        {
+            var controleValoresFixos = new ValoresFixosControle();
+            var valoresFixos = controleValoresFixos.BuscarDespesasFixas();
+            var F = new Frm_Busca(valoresFixos, "Valores Fixos");
+            var M = F.ShowDialog();
+            if(M == DialogResult.OK)
+            {
+                var idValorFixo = int.Parse(F.IdSelect);
+                var valorFixo = controleValoresFixos.BuscarDespesasFixasId(idValorFixo);
+                PreencherFormulario(valorFixo);
+                Btn_Cancelar.Enabled = false;
+                Btn_Editar.Enabled = true;
+                Btn_Excluir.Enabled = true;
+                Btn_Gravar.Enabled = false;
+                Btn_Novo.Enabled = true;
+            }
+
+        }
+        private void PreencherFormulario (Valores_Fixos valor)
+        {
+            Txt_Codigo.Text = valor.Id.ToString();
+            Txt_CodigoEstabelecimento.Text = valor.Estabelecimento.Id.ToString();
+            Txt_NomeDespesa.Text = valor.Nome;
+            Txt_NomeEstabelecimento.Text = valor.Estabelecimento.Nome;
+            Txt_Observacao.Text = valor.Observacao;
+            Msk_Valor.Text = valor.Valor.ToString();
+            Cbo_TipoMovimentacao.SelectedIndex = valor.Movimentacao == "E" ? 0 : 1;
+            
         }
     }
 }

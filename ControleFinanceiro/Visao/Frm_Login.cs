@@ -48,10 +48,10 @@ namespace ControleFinanceiro.Visao
                 var Usuario = new UsuarioModelo(nomeUsuario, senhaUsuario);
                 var ControleUsuario = new AutenticarControle();
                 ControleUsuario.ControleSenhaValida(Usuario);
-                var M = new Frm_Aviso($"Olá {nomeUsuario}!", "sucesso");
+                var M = new Frm_Aviso($"Olá, {nomeUsuario}!", "sucesso");
                 M.ShowDialog();
                 var F = new Frm_ControleFinanceiro(this,Usuario);
-                F.Show();
+                F.ShowDialog();
 
             }catch(AutenticarException ex)
             {

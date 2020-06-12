@@ -13,6 +13,7 @@ using ControleFinanceiro.Modelo.Modelo;
 using ControleFinanceiro.Visao.Filtros;
 using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Controle;
+using ControleFinanceiro.Controle;
 
 namespace ControleFinanceiro.Visao.Movimentacoes
 {
@@ -111,6 +112,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             LimparFormulario();
             Btn_Novo.Enabled = false;
+            Btn_BuscaEstabelecimento.Enabled = true;
             Btn_Gravar.Enabled = true;
             Txt_Observacao.Enabled = true;
             Msk_Valor.Enabled = true;
@@ -135,7 +137,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             var valor = double.Parse(Msk_Valor.Text);
             var Saida = new Fin_Pagar();
-            Saida.Cod_Estabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
+           // Saida.Cod_Estabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
             Saida.Observacao = Txt_Observacao.Text;
             Saida.Documento = Txt_Documento.Text;
             Saida.Data_Lancamento = Dat_DataLancamento.Value;
@@ -183,7 +185,9 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
         {
-            var F = new Frm_BuscaEstabelecimento();
+            var contEstabelecimento = new EstabelecimentoControle();
+            var estabelecimentos = contEstabelecimento.BuscarEstabelecimento();
+            var F = new Frm_BuscaEstabelecimento(estabelecimentos);
             F.ShowDialog();
         }
     }

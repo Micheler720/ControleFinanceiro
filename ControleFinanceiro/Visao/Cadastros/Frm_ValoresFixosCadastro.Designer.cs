@@ -53,6 +53,7 @@
             this.Lbl_Estabelecimento = new System.Windows.Forms.Label();
             this.Msk_Valor = new System.Windows.Forms.MaskedTextBox();
             this.Lbl_Valor = new System.Windows.Forms.Label();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.Grp_DadosDespesaFixa.SuspendLayout();
             this.SuspendLayout();
@@ -87,6 +88,7 @@
             this.abrirToolStripButton.Name = "abrirToolStripButton";
             this.abrirToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.abrirToolStripButton.Text = "&Abrir";
+            this.abrirToolStripButton.Click += new System.EventHandler(this.abrirToolStripButton_Click);
             // 
             // ajudaToolStripButton
             // 
@@ -112,22 +114,22 @@
             this.Txt_NomeDespesa.Location = new System.Drawing.Point(9, 140);
             this.Txt_NomeDespesa.Name = "Txt_NomeDespesa";
             this.Txt_NomeDespesa.Size = new System.Drawing.Size(326, 20);
-            this.Txt_NomeDespesa.TabIndex = 2;
+            this.Txt_NomeDespesa.TabIndex = 6;
             this.Txt_NomeDespesa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txt_NomeDespesa_KeyUp);
             // 
             // Btn_Gravar
             // 
-            this.Btn_Gravar.Location = new System.Drawing.Point(228, 331);
+            this.Btn_Gravar.Location = new System.Drawing.Point(147, 324);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(75, 23);
-            this.Btn_Gravar.TabIndex = 12;
+            this.Btn_Gravar.TabIndex = 9;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
             this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
             // 
             // Btn_Excluir
             // 
-            this.Btn_Excluir.Location = new System.Drawing.Point(390, 331);
+            this.Btn_Excluir.Location = new System.Drawing.Point(309, 324);
             this.Btn_Excluir.Name = "Btn_Excluir";
             this.Btn_Excluir.Size = new System.Drawing.Size(75, 23);
             this.Btn_Excluir.TabIndex = 11;
@@ -137,7 +139,7 @@
             // 
             // Btn_Novo
             // 
-            this.Btn_Novo.Location = new System.Drawing.Point(309, 331);
+            this.Btn_Novo.Location = new System.Drawing.Point(228, 324);
             this.Btn_Novo.Name = "Btn_Novo";
             this.Btn_Novo.Size = new System.Drawing.Size(75, 23);
             this.Btn_Novo.TabIndex = 10;
@@ -147,12 +149,13 @@
             // 
             // Btn_Editar
             // 
-            this.Btn_Editar.Location = new System.Drawing.Point(147, 331);
+            this.Btn_Editar.Location = new System.Drawing.Point(66, 324);
             this.Btn_Editar.Name = "Btn_Editar";
             this.Btn_Editar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Editar.TabIndex = 9;
             this.Btn_Editar.Text = "button2";
             this.Btn_Editar.UseVisualStyleBackColor = true;
+            this.Btn_Editar.Click += new System.EventHandler(this.Btn_Editar_Click);
             // 
             // Lbl_Codigo
             // 
@@ -168,7 +171,7 @@
             this.Txt_Codigo.Location = new System.Drawing.Point(9, 50);
             this.Txt_Codigo.Name = "Txt_Codigo";
             this.Txt_Codigo.Size = new System.Drawing.Size(100, 20);
-            this.Txt_Codigo.TabIndex = 14;
+            this.Txt_Codigo.TabIndex = 1;
             // 
             // Grp_DadosDespesaFixa
             // 
@@ -210,7 +213,7 @@
             this.Txt_Observacao.Multiline = true;
             this.Txt_Observacao.Name = "Txt_Observacao";
             this.Txt_Observacao.Size = new System.Drawing.Size(432, 76);
-            this.Txt_Observacao.TabIndex = 25;
+            this.Txt_Observacao.TabIndex = 8;
             // 
             // Ckb_AtivoInativo
             // 
@@ -218,7 +221,7 @@
             this.Ckb_AtivoInativo.Location = new System.Drawing.Point(270, 51);
             this.Ckb_AtivoInativo.Name = "Ckb_AtivoInativo";
             this.Ckb_AtivoInativo.Size = new System.Drawing.Size(80, 17);
-            this.Ckb_AtivoInativo.TabIndex = 24;
+            this.Ckb_AtivoInativo.TabIndex = 3;
             this.Ckb_AtivoInativo.Text = "checkBox1";
             this.Ckb_AtivoInativo.UseVisualStyleBackColor = true;
             // 
@@ -234,6 +237,7 @@
             // Cbo_TipoMovimentacao
             // 
             this.Cbo_TipoMovimentacao.FormattingEnabled = true;
+            this.Cbo_TipoMovimentacao.ItemHeight = 13;
             this.Cbo_TipoMovimentacao.Location = new System.Drawing.Point(129, 49);
             this.Cbo_TipoMovimentacao.Name = "Cbo_TipoMovimentacao";
             this.Cbo_TipoMovimentacao.Size = new System.Drawing.Size(121, 21);
@@ -244,7 +248,7 @@
             this.Btn_BuscaEstabelecimento.Location = new System.Drawing.Point(6, 91);
             this.Btn_BuscaEstabelecimento.Name = "Btn_BuscaEstabelecimento";
             this.Btn_BuscaEstabelecimento.Size = new System.Drawing.Size(37, 21);
-            this.Btn_BuscaEstabelecimento.TabIndex = 21;
+            this.Btn_BuscaEstabelecimento.TabIndex = 4;
             this.Btn_BuscaEstabelecimento.Text = "button1";
             this.Btn_BuscaEstabelecimento.UseVisualStyleBackColor = true;
             this.Btn_BuscaEstabelecimento.Click += new System.EventHandler(this.Btn_BuscaEstabelecimento_Click);
@@ -254,7 +258,8 @@
             this.Txt_CodigoEstabelecimento.Location = new System.Drawing.Point(44, 91);
             this.Txt_CodigoEstabelecimento.Name = "Txt_CodigoEstabelecimento";
             this.Txt_CodigoEstabelecimento.Size = new System.Drawing.Size(62, 20);
-            this.Txt_CodigoEstabelecimento.TabIndex = 20;
+            this.Txt_CodigoEstabelecimento.TabIndex = 5;
+            this.Txt_CodigoEstabelecimento.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txt_CodigoEstabelecimento_KeyUp);
             // 
             // Txt_NomeEstabelecimento
             // 
@@ -277,7 +282,7 @@
             this.Msk_Valor.Location = new System.Drawing.Point(341, 140);
             this.Msk_Valor.Name = "Msk_Valor";
             this.Msk_Valor.Size = new System.Drawing.Size(100, 20);
-            this.Msk_Valor.TabIndex = 17;
+            this.Msk_Valor.TabIndex = 7;
             this.Msk_Valor.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Msk_Valor_MaskInputRejected);
             this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
@@ -290,10 +295,21 @@
             this.Lbl_Valor.TabIndex = 16;
             this.Lbl_Valor.Text = "label2";
             // 
+            // Btn_Cancelar
+            // 
+            this.Btn_Cancelar.Location = new System.Drawing.Point(390, 324);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Cancelar.TabIndex = 16;
+            this.Btn_Cancelar.Text = "button4";
+            this.Btn_Cancelar.UseVisualStyleBackColor = true;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
+            // 
             // Frm_ValoresFixosCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Grp_DadosDespesaFixa);
             this.Controls.Add(this.Btn_Gravar);
             this.Controls.Add(this.Btn_Excluir);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.CheckBox Ckb_AtivoInativo;
         private System.Windows.Forms.Label Lbl_Observacao;
         private System.Windows.Forms.TextBox Txt_Observacao;
+        private System.Windows.Forms.Button Btn_Cancelar;
     }
 }
