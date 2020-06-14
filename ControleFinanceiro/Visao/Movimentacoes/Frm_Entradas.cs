@@ -51,6 +51,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Excluir.Enabled = false;
             Btn_Gravar.Enabled = false;
             Btn_Novo.Enabled = true;
+            Btn_Cancelar.Enabled = false;
             Txt_Codigo.Enabled = false;
             Txt_NomeEstabelecimento.Text = "";
             Txt_Codigo.Text = "";
@@ -193,9 +194,22 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Msk_CodigoEstabelecimento_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Msk_CodigoEstabelecimento.Text != "")
+            if (Msk_CodigoEstabelecimento.Text != "" && e.KeyValue == 13)
             {
-                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Green);
+                var idEstabelecimento = Convert.ToInt32(Msk_CodigoEstabelecimento.Text);
+                var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(idEstabelecimento);
+                if (estabelecimento != null)
+                {
+                    Txt_NomeEstabelecimento.Text = estabelecimento.Nome;
+                    Msk_CodigoEstabelecimento.Text = estabelecimento.Id.ToString();
+                    Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Green);
+                }
+                else
+                {
+                    Txt_NomeEstabelecimento.Text = "";
+                    Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Red);
+                    MessageBox.Show("Não existe estabelecimento para o codigo informado.Verifique!", "Aviso - Estabelecimento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
@@ -217,6 +231,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Btn_BuscaEstabelecimento_Click(object sender, EventArgs e)
         {
+            
             var controleEstabelecimento = new EstabelecimentoControle();
             var estabelecimentos = controleEstabelecimento.BuscarEstabelecimento();
             var F = new Frm_BuscaEstabelecimento(estabelecimentos);
@@ -227,6 +242,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void abrirToolStripButton_Click(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             var F = new Frm_BuscaLancamento(1);
             F.ShowDialog();
             if (F.DialogResult == DialogResult.OK) {
@@ -240,7 +256,9 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 Btn_Editar.Enabled = true;
                 Btn_Cancelar.Enabled = false;
                 HabilitarDesabilitarComponentes(false);
+
             }
+            this.Cursor = Cursors.Default;
         }
         private void PreencherFormulario()
         {
@@ -252,7 +270,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 Txt_Observacao.Text = Lancamento.Observacao;
                 Dat_DataLancamento.Value = Lancamento.Data_Lancamento;
                 Dat_Inclusão.Value = Lancamento.Data_Inclusao;
-                Msk_Valor.Text = Lancamento.Valor.ToString();
+                Msk_Valor.Text = Lancamento.Valor.ToString("F");
                 Msk_CodigoEstabelecimento.Text = Lancamento.Estabelecimento.Id.ToString();
             }
         }

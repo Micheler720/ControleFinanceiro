@@ -19,6 +19,9 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 {
     public partial class Frm_Saidas : UserControl
     {
+        private Fin_Pagar Lancamento { get; set; }
+        private string Operacao { get; set; }
+
         public Frm_Saidas()
         {
             InitializeComponent();
@@ -37,7 +40,9 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Novo.Text = "Novo";
             Btn_Gravar.Text = "Gravar";
             Dat_Inclusao.Enabled = false;
+            Btn_Cancelar.Enabled = false;
             Lbl_DataInclusao.Text = "Data Inclusao";
+            Btn_Cancelar.Text = "Cancelar";
             Btn_BuscaEstabelecimento.Text = "...";
             LimparFormulario();
         }
@@ -47,6 +52,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Excluir.Enabled = false;
             Btn_Gravar.Enabled = false;
             Btn_Novo.Enabled = true;
+            Btn_Cancelar.Enabled = false;
             Txt_Codigo.Enabled = false;
             Txt_NomeEstabelecimento.Text = "";
             Txt_Codigo.Text = "";
@@ -66,6 +72,17 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Grp_DadosMovimentacoes.BackColor);
             Grp_DadosMovimentacoes.AlterarBordaComponente(Dat_DataLancamento, Grp_DadosMovimentacoes.BackColor);
 
+        }
+        private void HabilitarDesabilitarComponentes (bool valor)
+        {
+
+            Msk_CodigoEstabelecimento.Enabled = valor;
+            Txt_NomeEstabelecimento.Enabled = false;
+            Btn_BuscaEstabelecimento.Enabled = valor;
+            Txt_Observacao.Enabled = valor;
+            Msk_Valor.Enabled = valor;
+            Dat_DataLancamento.Enabled = valor;
+            Txt_Documento.Enabled = valor;
         }
         private bool ValidaFormulario()
         {
@@ -110,41 +127,65 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Btn_Novo_Click(object sender, EventArgs e)
         {
+            Operacao = "Novo";
             LimparFormulario();
             Btn_Novo.Enabled = false;
-            Btn_BuscaEstabelecimento.Enabled = true;
+            Btn_Editar.Enabled = false;
+            Btn_Excluir.Enabled = false;
             Btn_Gravar.Enabled = true;
-            Txt_Observacao.Enabled = true;
-            Msk_Valor.Enabled = true;
-            Msk_CodigoEstabelecimento.Enabled = true;
-            Dat_DataLancamento.Enabled = true;
-            Txt_Documento.Enabled = true;
+            Btn_Cancelar.Enabled = true;
+            HabilitarDesabilitarComponentes(true);
         }
 
         private void Btn_Gravar_Click(object sender, EventArgs e)
         {
             if (ValidaFormulario())
             {
-                var saida = CapturarValor();
+                var saida = CapturarFormulario();
                 var controleSaida = new FinPagarControle();
-                controleSaida.ValidaSaida(saida);
-                var M = new Frm_Aviso("Dados Gravados com sucesso!", "sucesso");
+                if(Operacao == "Novo")
+                {
+                    controleSaida.GravarSaida(saida);
+                }
+                else
+                {
+                    saida.Id = Convert.ToInt32(Txt_Codigo.Text);
+                    controleSaida.AlterarSaida(saida);
+                }
+                var M = new Frm_Aviso(controleSaida.Mensagem, "sucesso");
                 M.ShowDialog();
                 LimparFormulario();
             }
         }
-        private Fin_Pagar CapturarValor()
+        private Fin_Pagar CapturarFormulario()
         {
+            var idEstabelecimento = Convert.ToInt32(Msk_CodigoEstabelecimento.Text);
+            var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(idEstabelecimento);
             var valor = double.Parse(Msk_Valor.Text);
             var Saida = new Fin_Pagar();
-           // Saida.Cod_Estabelecimento = int.Parse(Msk_CodigoEstabelecimento.Text);
             Saida.Observacao = Txt_Observacao.Text;
             Saida.Documento = Txt_Documento.Text;
             Saida.Data_Lancamento = Dat_DataLancamento.Value;
             Saida.Data_Inclusao = DateTime.Now;
             Saida.Valor = valor;
+            Saida.Observacao = Txt_Observacao.Text;
+            Saida.Estabelecimento = estabelecimento;
             return Saida;
 
+        }
+        private void PreencherFormulario()
+        {
+            if(Lancamento != null)
+            {
+                Txt_Codigo.Text = Lancamento.Id.ToString();
+                Txt_Documento.Text = Lancamento.Documento;
+                Txt_NomeEstabelecimento.Text = Lancamento.Estabelecimento.Nome;
+                Txt_Observacao.Text = Lancamento.Observacao;
+                Msk_CodigoEstabelecimento.Text = Lancamento.Estabelecimento.Id.ToString();
+                Msk_Valor.Text = Lancamento.Valor.ToString("F");
+                Dat_DataLancamento.Value = Lancamento.Data_Lancamento;
+                Dat_Inclusao.Value = Lancamento.Data_Inclusao;
+            }
         }
 
         private void Msk_Valor_KeyUp(object sender, KeyEventArgs e)
@@ -161,9 +202,22 @@ namespace ControleFinanceiro.Visao.Movimentacoes
 
         private void Msk_CodigoEstabelecimento_KeyUp(object sender, KeyEventArgs e)
         {
-            if (Msk_CodigoEstabelecimento.Text != "")
+            if (Msk_CodigoEstabelecimento.Text != "" && e.KeyValue == 13)
             {
-                Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Green);
+                var idEstabelecimento = Convert.ToInt32(Msk_CodigoEstabelecimento.Text);
+                var estabelecimento = EstabelecimentoControle.BuscarEstabelecimentoId(idEstabelecimento);
+                if (estabelecimento != null)
+                {
+                    Txt_NomeEstabelecimento.Text = estabelecimento.Nome;
+                    Msk_CodigoEstabelecimento.Text = estabelecimento.Id.ToString();
+                    Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Green);
+                }
+                else
+                {
+                    Txt_NomeEstabelecimento.Text = "";
+                    Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento, Color.Red);
+                    MessageBox.Show("Não existe estabelecimento para o codigo informado.Verifique!","Aviso - Estabelecimento", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {
@@ -189,6 +243,42 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             var estabelecimentos = contEstabelecimento.BuscarEstabelecimento();
             var F = new Frm_BuscaEstabelecimento(estabelecimentos);
             F.ShowDialog();
+            if(F.DialogResult == DialogResult.OK)
+            {
+                Txt_NomeEstabelecimento.Text = F.NomeEstabelecimento;
+                Msk_CodigoEstabelecimento.Text = F.IdSelect.ToString();
+            }
+        }
+
+        private void abrirToolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            var F = new Frm_BuscaLancamento(2);
+            F.ShowDialog();
+            if(F.DialogResult == DialogResult.OK)
+            {
+                var controlePagar = new FinPagarControle();
+                Lancamento = controlePagar.BuscarFinanceiroId(F.IdLancamento);
+                PreencherFormulario();
+                Btn_Editar.Enabled = true;
+                Btn_Excluir.Enabled = true;
+                Btn_Gravar.Enabled = false;
+                Btn_Novo.Enabled = true;
+                Btn_Cancelar.Enabled = false;
+                HabilitarDesabilitarComponentes(false);
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void Btn_Editar_Click(object sender, EventArgs e)
+        {
+            Operacao = "Editar";
+            Btn_Cancelar.Enabled = true;
+            Btn_Editar.Enabled = false;
+            Btn_Excluir.Enabled = false;
+            Btn_Gravar.Enabled = true;
+            Btn_Novo.Enabled = false;
+            HabilitarDesabilitarComponentes(true);
         }
     }
 }

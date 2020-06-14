@@ -45,3 +45,5 @@ C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Deb
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NServiceBus.Core.xml
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Mapeamento\Fin_Receber.hbm.xml
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Mapeamento\Fin_Pagar.hbm.xml
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NHibernate.Caches.SysCache.dll
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NHibernate.Caches.SysCache.xml

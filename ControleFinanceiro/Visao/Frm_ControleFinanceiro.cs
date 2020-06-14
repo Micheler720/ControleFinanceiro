@@ -1,7 +1,10 @@
 ﻿using ControleFinanceiro.Controle;
 using ControleFinanceiro.Modelo;
+using ControleFinanceiro.Modelo.Controle;
+using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Visao.Cadastros;
 using ControleFinanceiro.Visao.Movimentacoes;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,11 +14,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ControleFinanceiro.Visao
 {
     public partial class Frm_ControleFinanceiro : Form
     {
+
         public Frm_ControleFinanceiro(Frm_Login L, UsuarioModelo usuario)
         {
             InitializeComponent();
@@ -23,13 +28,46 @@ namespace ControleFinanceiro.Visao
             var MyAvatar = (Image)global::ControleFinanceiro.Properties.Resources.ResourceManager.GetObject("avatar");
             Pic_Avatar.Image = MyAvatar;
             Pic_Avatar.SizeMode = PictureBoxSizeMode.Zoom;
-           // L.Close();
+            Tab_Inicio.Text = "Inicio";
+            Tab_Inicio.ImageIndex = 5;
+            
+            preencherGrafico();
+
+            // L.Close();
+        }
+        private void preencherGrafico()
+        {
+            var hoje = DateTime.Now;
+            TimeSpan dias = new TimeSpan(30,0,0,0,0);
+            var UltimoDia = hoje.Subtract(dias);
+            var controlePagar = new FinPagarControle();
+            var lancametos = controlePagar.BuscaPorDataLancamento(UltimoDia,hoje);
+            var series1 = new Series
+            {
+                Name = "Desepesas",
+                Color = Color.Red,
+                IsVisibleInLegend = true,
+                IsXValueIndexed = true,
+                ChartType = SeriesChartType.Line,
+                MarkerSize = 1,
+                IsValueShownAsLabel = true
+            };
+            Cha_GastoDiario.Series.Add(series1);
+            Cha_GastoDiario.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            for (int i = 1; i<=30; i++)
+            {
+                
+                series1.Points.AddXY(UltimoDia.ToString("dd/MM"), i);
+                UltimoDia = UltimoDia.AddDays(1);
+            }
+
         }
 
         private void chart1_Click(object sender, EventArgs e)
         {
 
         }
+
 
         private void Mnu_Aplicacao_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -88,7 +126,7 @@ namespace ControleFinanceiro.Visao
 
         private void fecharAbaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Tbc_Aplicacoes.SelectedIndex >= 0)
+            if (Tbc_Aplicacoes.SelectedIndex > 0)
             {
                 var pergunta = MessageBox.Show("Deseja realmente fechar aba?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == DialogResult.Yes)
@@ -100,7 +138,6 @@ namespace ControleFinanceiro.Visao
 
         private void ApagarAba(TabPage TB)
         {
-            
                 Tbc_Aplicacoes.TabPages.Remove(TB);
         }
 
@@ -127,7 +164,7 @@ namespace ControleFinanceiro.Visao
 
         private void vToolTip001_Click(object sender, EventArgs e)
         {
-            if (Tbc_Aplicacoes.SelectedIndex >= 0)
+            if (Tbc_Aplicacoes.SelectedIndex > 0)
             {
                 var pergunta = MessageBox.Show("Deseja realmente fechar aba?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == DialogResult.Yes)
@@ -149,14 +186,14 @@ namespace ControleFinanceiro.Visao
         private void ApagarAbaEsquerda()
         {
             var tabSelecionada = Tbc_Aplicacoes.SelectedIndex;
-            for (int i = tabSelecionada - 1; i >= 0; i--)
+            for (int i = tabSelecionada - 1; i > 0; i--)
             {
                 ApagarAba(Tbc_Aplicacoes.TabPages[i]);
             }
         }
         private void vToolTip002_Click(object sender, EventArgs e)
         {
-            if (Tbc_Aplicacoes.SelectedIndex >= 0)
+            if (Tbc_Aplicacoes.SelectedIndex > 0)
             {
                 var pergunta = MessageBox.Show("Deseja realmente fechar aba?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == DialogResult.Yes)
@@ -167,7 +204,7 @@ namespace ControleFinanceiro.Visao
         }
         private void vToolTip003_Click(object sender, EventArgs e)
         {
-            if (Tbc_Aplicacoes.SelectedIndex >= 0)
+            if (Tbc_Aplicacoes.SelectedIndex > 0)
             {
                 var pergunta = MessageBox.Show("Deseja realmente fechar aba?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == DialogResult.Yes)
@@ -178,7 +215,7 @@ namespace ControleFinanceiro.Visao
         }
         private void vToolTip004_Click(object sender, EventArgs e)
         {
-            if (Tbc_Aplicacoes.SelectedIndex >= 0)
+            if (Tbc_Aplicacoes.SelectedIndex > 0)
             {
                 var pergunta = MessageBox.Show("Deseja realmente fechar aba?", "Questão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (pergunta == DialogResult.Yes)
@@ -247,6 +284,11 @@ namespace ControleFinanceiro.Visao
             TB.Controls.Add(U);
             Tbc_Aplicacoes.Controls.Add(TB);
             SelecionarUltimaTabPage();
+        }
+
+        private void Cha_GastoDiario_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

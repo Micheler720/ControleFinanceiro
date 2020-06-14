@@ -72,3 +72,6 @@ C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\Enti
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\MySql.Data.Entity.EF6.xml
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Filtros.Frm_Busca.resources
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Filtros.Frm_BuscaLancamento.resources
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\NHibernate.Caches.SysCache.dll
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\bin\Debug\NHibernate.Caches.SysCache.xml
+C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro\obj\Debug\ControleFinanceiro.Visao.Movimentacoes.Frm_ImportaMovimentacaoFixa.resources

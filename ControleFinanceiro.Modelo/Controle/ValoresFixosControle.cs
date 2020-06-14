@@ -60,7 +60,7 @@ namespace ControleFinanceiro.Modelo.Controle
         {
             var session = NHibernateHelper.AbreSession();
             var dao = new ValoresFixosDAO(session);
-            var valoresFixos = dao.BuscarDespesas();
+            var valoresFixos = dao.BuscarValoresFixos();
             session.Close();
             return valoresFixos;
         }
@@ -69,9 +69,16 @@ namespace ControleFinanceiro.Modelo.Controle
         {
             var session = NHibernateHelper.AbreSession();
             var dao = new ValoresFixosDAO(session);
-            var valorFixo = dao.BuscarDespesaId(id);
+            var valorFixo = dao.BuscarValorFixoId(id);
             session.Close();
             return valorFixo;
+        }
+        public List<Valores_Fixos> BuscarValoresFixosAtivos(bool status = true)
+        {
+            var session = NHibernateHelper.AbreSession();
+            var dao = new ValoresFixosDAO(session);
+            var valores = dao.BuscarValoresFixosAtivo(status);
+            return valores;
         }
 
 

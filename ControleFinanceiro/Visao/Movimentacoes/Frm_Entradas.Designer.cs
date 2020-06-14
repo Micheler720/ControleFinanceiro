@@ -307,13 +307,13 @@
             // Lbl_Titulo
             // 
             this.Lbl_Titulo.AutoSize = true;
-            this.Lbl_Titulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Lbl_Titulo.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo.Location = new System.Drawing.Point(0, 25);
+            this.Lbl_Titulo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Lbl_Titulo.Location = new System.Drawing.Point(191, 25);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
-            this.Lbl_Titulo.Size = new System.Drawing.Size(46, 18);
+            this.Lbl_Titulo.Size = new System.Drawing.Size(164, 18);
             this.Lbl_Titulo.TabIndex = 18;
-            this.Lbl_Titulo.Text = "label1";
+            this.Lbl_Titulo.Text = "Lançamentos de Entradas";
             this.Lbl_Titulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Lbl_Legenda

@@ -70,6 +70,10 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.10.9\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.Caches.SysCache, Version=5.6.0.0, Culture=neutral, PublicKeyToken=6876f2ea66c9f443, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.Caches.SysCache.5.6.0\lib\net461\NHibernate.Caches.SysCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.7.0.1\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
@@ -189,6 +193,12 @@
     <Compile Include="Visao\Movimentacoes\Frm_Entradas.Designer.cs">
       <DependentUpon>Frm_Entradas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_ImportaMovimentacaoFixa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Visao\Movimentacoes\Frm_ImportaMovimentacaoFixa.Designer.cs">
+      <DependentUpon>Frm_ImportaMovimentacaoFixa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Visao\Movimentacoes\Frm_Saidas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -244,12 +254,18 @@
     <EmbeddedResource Include="Visao\Movimentacoes\Frm_Entradas.resx">
       <DependentUpon>Frm_Entradas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Visao\Movimentacoes\Frm_ImportaMovimentacaoFixa.resx">
+      <DependentUpon>Frm_ImportaMovimentacaoFixa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visao\Movimentacoes\Frm_Saidas.resx">
       <DependentUpon>Frm_Saidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Visao\Movimentacoes\Frm_Saldo.resx">
       <DependentUpon>Frm_Saldo.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ControleFinanceiro.Modelo.Entidades.Estabelecimento.datasource" />
     <None Include="Properties\DataSources\ControleFinanceiro.Modelo.Entidades.Fin_Pagar.datasource" />
