@@ -15,6 +15,7 @@ namespace ControleFinanceiro.Controle
     public class EstabelecimentoControle
     {
         public string Mensagem;
+        public bool Sucesso = true;
         public void GravarCadastroEstabelecimento(Estabelecimento estabelecimento)
         {
 
@@ -46,20 +47,26 @@ namespace ControleFinanceiro.Controle
         {
 
             var EstabelecimentoNegocio = new EstabelecimentoNegocio();
-            if (EstabelecimentoNegocio.ValidaCadastroEstabelecimento(estabelecimento))
+            if (EstabelecimentoNegocio.ValidaExclusaoEstabelecimento(estabelecimento))
             {
                 var session = NHibernateHelper.AbreSession();
                 var estabelecimentoDAO = new EstabelecimentoDAO(session);
                 estabelecimentoDAO.Excluir(estabelecimento);
                 session.Close();
                 Mensagem = "Dados excluídos com sucesso";
+                Sucesso = true;
+            }
+            else
+            {
+                Sucesso= false;
+                Mensagem = EstabelecimentoNegocio.Mensagem;
             }
         }
         public static Estabelecimento BuscarEstabelecimentoId(int id)
         {
             var session = NHibernateHelper.AbreSession();
             var estabelecimentoDAO = new EstabelecimentoDAO(session);
-            var estabeleciemnto = estabelecimentoDAO.BuscarPorId(id);
+            var estabeleciemnto = estabelecimentoDAO.BuscarEstabelecimento(id:id);
             session.Close();
             return estabeleciemnto;
         }

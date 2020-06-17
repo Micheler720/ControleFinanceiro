@@ -14,7 +14,7 @@ namespace ControleFinanceiro.Controle
 {
     public class TipoEstabelecimentoControle
     {
-        bool Status;
+        public bool Status = true;
         public string Mensagem;
         public void GravarTipoEstabelecimento(Tipo_Estabelecimento tipoEstabelecimento)
         {
@@ -25,19 +25,31 @@ namespace ControleFinanceiro.Controle
                 var tipoEstabelecimentoDAO = new TipoEstabelecimentoDAO(session);
                 tipoEstabelecimentoDAO.Adiciona(tipoEstabelecimento);
                 session.Close();
-                Mensagem = "Dados Gravados com sucesso!";
+                Mensagem = "Dados Gravados com sucesso!"; 
+                Status = true;
+            }
+            else
+            {
+                Status = false;
+                Mensagem = tipoEstabelecimentoNegocio.Mensagem;
             }
         }
         public void AlterarTipoEstabelecimento(Tipo_Estabelecimento tipoEstabelecimento)
         {
             var tipoEstabelecimentoNegocio = new TipoEstabelecimentoNegocio();
-            if (tipoEstabelecimentoNegocio.validaTipoEstabelecimentoNegocio(tipoEstabelecimento))
+            if (tipoEstabelecimentoNegocio.validaAlteracao(tipoEstabelecimento))
             {
                 ISession session = NHibernateHelper.AbreSession();
                 var tipoEstabelecimentoDAO = new TipoEstabelecimentoDAO(session);
                 tipoEstabelecimentoDAO.Alterar(tipoEstabelecimento);
                 session.Close();
                 Mensagem = "Dados Alterados com sucesso!";
+                Status = true;
+            }
+            else
+            {
+                Status = false;
+                Mensagem = tipoEstabelecimentoNegocio.Mensagem;
             }
         }
         public List<List<string>> BuscarTipoEstabelecimento()
@@ -54,15 +66,26 @@ namespace ControleFinanceiro.Controle
             var session = NHibernateHelper.AbreSession();
             var dao = new TipoEstabelecimentoDAO(session);
             var tipoEstabelecimento = dao.BuscarPorId(id);
+            session.Close();
             return tipoEstabelecimento;
         }
-        public void ExcluirTipoEstabelecimento(Tipo_Estabelecimento estabelecimento)
+        public void ExcluirTipoEstabelecimento(Tipo_Estabelecimento tipoEstabelecimento)
         {
-            Status = true;
-            Mensagem = "Dados Excluídos com sucesso.";
-            var session = NHibernateHelper.AbreSession();
-            var dao = new TipoEstabelecimentoDAO(session);
-            dao.Excluir(estabelecimento);
+            var negocioTipoEstabelecimento = new TipoEstabelecimentoNegocio();
+            if (negocioTipoEstabelecimento.validaExclusao(tipoEstabelecimento))
+            {
+                Status = true;
+                Mensagem = "Dados Excluídos com sucesso.";
+                var session = NHibernateHelper.AbreSession();
+                var dao = new TipoEstabelecimentoDAO(session);
+                dao.Excluir(tipoEstabelecimento);
+                session.Close();
+            }
+            else
+            {
+                Status = false;
+                Mensagem = negocioTipoEstabelecimento.Mensagem;
+            }
         }
     }
 }

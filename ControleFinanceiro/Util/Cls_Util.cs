@@ -56,11 +56,30 @@ namespace ControleFinanceiro.Util
             g.DrawRectangle(new Pen(cor, Espessura), componente.Location.X, componente.Location.Y, componente.Width, componente.Height);
 
         }
-        /*internal static void RemoverBordaComponente(this GroupBox elementoPai)
+        internal static DateTime ConvertData(string data)
         {
-            var g = elementoPai.CreateGraphics();
-            g.Dispose();
-            //g.Clear(elementoPai.BackColor);
-        }*/
+            var Data = data.Split('/');
+            var dataLancamento = new DateTime(Convert.ToInt32(Data[2]), Convert.ToInt32(Data[1]), Convert.ToInt32(Data[0]));
+            return dataLancamento;
+        }
+        public static DateTime PrimeiroDiadoMes(DateTime Data)
+        {
+            DateTime PrimeiroDiadoMes =new  DateTime(Data.Year,Data.Month,1);
+
+            return PrimeiroDiadoMes;
+        }
+        public static DateTime UltimoDiadoMes(DateTime Data)
+
+        {
+
+            DateTime PrimeiroDiadoMes = DateTime.Parse("01" +Data.ToString("/ MM / yyyy"));
+
+            DateTime PrimeiroDiadoProximoMes = PrimeiroDiadoMes.AddMonths(1);
+
+            DateTime UltimoDiadoMes = PrimeiroDiadoProximoMes.AddDays(-1);
+
+            return UltimoDiadoMes;
+
+        }
     }
 }

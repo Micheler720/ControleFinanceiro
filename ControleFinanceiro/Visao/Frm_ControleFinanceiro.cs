@@ -2,6 +2,7 @@
 using ControleFinanceiro.Modelo;
 using ControleFinanceiro.Modelo.Controle;
 using ControleFinanceiro.Modelo.Entidades;
+using ControleFinanceiro.Modelo.Modelo;
 using ControleFinanceiro.Visao.Cadastros;
 using ControleFinanceiro.Visao.Movimentacoes;
 using Microsoft.SqlServer.Server;
@@ -30,34 +31,63 @@ namespace ControleFinanceiro.Visao
             Pic_Avatar.SizeMode = PictureBoxSizeMode.Zoom;
             Tab_Inicio.Text = "Inicio";
             Tab_Inicio.ImageIndex = 5;
-            
-            preencherGrafico();
+            configurarGrafico();
 
             // L.Close();
         }
-        private void preencherGrafico()
+        private void configurarGrafico()
         {
+            Cha_GastoDiario.ChartAreas["ChartArea1"].AxisX.Interval = 1;
             var hoje = DateTime.Now;
-            TimeSpan dias = new TimeSpan(30,0,0,0,0);
+            TimeSpan dias = new TimeSpan(30, 0, 0, 0, 0);
             var UltimoDia = hoje.Subtract(dias);
             var controlePagar = new FinPagarControle();
-            var lancametos = controlePagar.BuscaPorDataLancamento(UltimoDia,hoje);
+            var controleReceber = new FinReceberControle();
+            var lancametosPagar = controlePagar.BuscarLancamentosAgrupadaPorData(UltimoDia, hoje);
+            preencherGrafico(lancametosPagar, "Desepesas", Color.Red);
+            var lancametosReceber = controleReceber.BuscarLancamentosAgrupadaPorData(UltimoDia, hoje);
+            preencherGrafico(lancametosReceber, "Receitas", Color.Green);
+            Cha_GastoDiario.Titles.Add(CreateTitle());
+        }
+        private Title CreateTitle()
+        {
+            Title title = new Title();
+            title.Text = "Gráfico de Movimentações ultimos 15 dias";
+            title.ShadowColor = Color.FromArgb(32, 100, 0, 0);
+            // title.ShadowColor = Color.FromArgb(32, 0, 0, 0);
+            title.Font = new Font("Trebuchet MS", 14F, FontStyle.Bold);
+            title.ShadowOffset = 3;
+            title.ForeColor = Color.FromArgb(26, 59, 105);
+            return title;
+        }
+        private void preencherGrafico(List<RelAgrupadoPorData> lancamentos, string nome, Color cor)
+        {
+            TimeSpan dias = new TimeSpan(15, 0, 0, 0, 0);
+            var UltimoDia = DateTime.Now.Subtract(dias);
             var series1 = new Series
             {
-                Name = "Desepesas",
-                Color = Color.Red,
+                Name =nome,
+                Color = cor,
                 IsVisibleInLegend = true,
-                IsXValueIndexed = true,
-                ChartType = SeriesChartType.Line,
-                MarkerSize = 1,
-                IsValueShownAsLabel = true
+                IsXValueIndexed = false,
+                ChartType = SeriesChartType.Spline,
+                MarkerSize = 5,
+                IsValueShownAsLabel = true,
+                BorderWidth = 3
             };
             Cha_GastoDiario.Series.Add(series1);
-            Cha_GastoDiario.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-            for (int i = 1; i<=30; i++)
+            for (int i = 1; i<=15; i++)
             {
-                
-                series1.Points.AddXY(UltimoDia.ToString("dd/MM"), i);
+                foreach (var item in lancamentos)
+                {
+                    if (item.Data.ToShortDateString() == UltimoDia.ToShortDateString())
+                    {                        
+                        series1.Points.AddXY(UltimoDia.ToString("dd/MM"), item.Valor);
+                        UltimoDia = UltimoDia.AddDays(1);
+                        continue;
+                    }
+                }
+                series1.Points.AddXY(UltimoDia.ToString("dd/MM"), 0);
                 UltimoDia = UltimoDia.AddDays(1);
             }
 

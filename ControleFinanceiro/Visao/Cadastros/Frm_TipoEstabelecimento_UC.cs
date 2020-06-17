@@ -69,12 +69,14 @@ namespace ControleFinanceiro.Visao.Cadastros
                     {
                         tipoEstabelecimento.Id = int.Parse(Txt_Codigo.Text);
                         tipoEstabelecimentoControle.AlterarTipoEstabelecimento(tipoEstabelecimento);
-                    }                         
-                    var M = new Frm_Aviso(tipoEstabelecimentoControle.Mensagem, "sucesso");
-                    M.ShowDialog();
-                    LimparFormulario();
-                    Btn_Gravar.Enabled = false;
-                    Btn_Novo.Enabled = true;
+                    }
+                    if (tipoEstabelecimentoControle.Status)
+                    {
+                        LimparFormulario();
+                        Btn_Gravar.Enabled = false;
+                        Btn_Novo.Enabled = true;
+                    }
+                    MessageBox.Show(tipoEstabelecimentoControle.Mensagem, "Cadastro - Tipo Estabelecimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (TipoEstabelecimentoException ex)
                 {
@@ -142,7 +144,11 @@ namespace ControleFinanceiro.Visao.Cadastros
                 estabelecimento.Descricao = Txt_Descricao.Text;
                 estabelecimento.Id = int.Parse(Txt_Codigo.Text);
                 controle.ExcluirTipoEstabelecimento(estabelecimento);
-                LimparFormulario();
+                if (controle.Status)
+                {
+                    LimparFormulario();
+                }
+                MessageBox.Show(controle.Mensagem, "Tipo Estabelecimento", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

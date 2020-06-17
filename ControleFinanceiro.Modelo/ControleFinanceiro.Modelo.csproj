@@ -137,13 +137,14 @@
     <Compile Include="Modelo\CepModelo.cs" />
     <Compile Include="Modelo\FinEntradasModelo.cs" />
     <Compile Include="Modelo\FinSaidasModelo.cs" />
+    <Compile Include="Modelo\RelAgrupadoPorData.cs" />
     <Compile Include="Modelo\ValoresFixosModelo.cs" />
     <Compile Include="Modelo\EstabelecimentoModelo.cs" />
     <Compile Include="Modelo\TipoEstabelecimentoModelo.cs" />
     <Compile Include="Modelo\UsuarioModelo.cs" />
     <Compile Include="Negocio\AutenticarNegocio.cs" />
     <Compile Include="Negocio\EntradaNegocio.cs" />
-    <Compile Include="Negocio\SaidaNegocio.cs" />
+    <Compile Include="Negocio\FinPagarNegocio.cs" />
     <Compile Include="Negocio\ValoresFixosNegocio.cs" />
     <Compile Include="Negocio\EstabelecimentoNegocio.cs" />
     <Compile Include="Negocio\TipoEstabelecimentoNegocio.cs" />

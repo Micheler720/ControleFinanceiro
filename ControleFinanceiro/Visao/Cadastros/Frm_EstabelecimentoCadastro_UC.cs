@@ -476,17 +476,20 @@ namespace ControleFinanceiro.Visao.Cadastros
             var M = MessageBox.Show("Deseja realmente excluir o estabelecimento?", "Cadastro Estabelecimento", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if(M == DialogResult.OK && Txt_Codigo.Text != "")
             {
-                Btn_Gravar.Enabled = false;
-                Btn_Novo.Enabled = true;
-                Btn_Editar.Enabled = false;
-                Btn_Cancelar.Enabled = false;
-                Btn_Excluir.Enabled = false;
                 var contrEstabelecimento = new EstabelecimentoControle();
                 var estabelecimento = CapturarFormulario();
                 estabelecimento.Id = int.Parse(Txt_Codigo.Text);
                 contrEstabelecimento.ExcluirCadastroEstabelecimento(estabelecimento);
+                if (contrEstabelecimento.Sucesso)
+                {
+                    Btn_Gravar.Enabled = false;
+                    Btn_Novo.Enabled = true;
+                    Btn_Editar.Enabled = false;
+                    Btn_Cancelar.Enabled = false;
+                    Btn_Excluir.Enabled = false;
+                    LimparFormulario();
+                }
                 MessageBox.Show(contrEstabelecimento.Mensagem, "Cadastro Estabelecimento - Controle Financeiro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LimparFormulario();
             }
         }
 

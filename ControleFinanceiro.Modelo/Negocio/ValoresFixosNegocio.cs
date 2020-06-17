@@ -10,6 +10,7 @@ namespace ControleFinanceiro.Modelo.Negocio
 {
     internal class ValoresFixosNegocio
     {
+        public string Mensagem = "";
 
         internal bool ValidaDespesaFixa(Valores_Fixos DespesaFixa)
         {

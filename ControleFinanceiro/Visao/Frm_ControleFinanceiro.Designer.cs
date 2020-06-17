@@ -48,14 +48,14 @@
             this.Lbl_Usuario = new System.Windows.Forms.Label();
             this.Pic_Avatar = new System.Windows.Forms.PictureBox();
             this.Tab_Inicio = new System.Windows.Forms.TabPage();
-            this.Tbc_Aplicacoes = new System.Windows.Forms.TabControl();
             this.Cha_GastoDiario = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.Tbc_Aplicacoes = new System.Windows.Forms.TabControl();
             this.Mnu_Aplicacao.SuspendLayout();
             this.Grp_Avatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Avatar)).BeginInit();
             this.Tab_Inicio.SuspendLayout();
-            this.Tbc_Aplicacoes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Cha_GastoDiario)).BeginInit();
+            this.Tbc_Aplicacoes.SuspendLayout();
             this.SuspendLayout();
             // 
             // Mnu_Aplicacao
@@ -234,18 +234,6 @@
             this.Tab_Inicio.Text = "tabPage1";
             this.Tab_Inicio.UseVisualStyleBackColor = true;
             // 
-            // Tbc_Aplicacoes
-            // 
-            this.Tbc_Aplicacoes.Controls.Add(this.Tab_Inicio);
-            this.Tbc_Aplicacoes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Tbc_Aplicacoes.ImageList = this.Iml_ListaTabPage;
-            this.Tbc_Aplicacoes.Location = new System.Drawing.Point(126, 0);
-            this.Tbc_Aplicacoes.Name = "Tbc_Aplicacoes";
-            this.Tbc_Aplicacoes.SelectedIndex = 0;
-            this.Tbc_Aplicacoes.Size = new System.Drawing.Size(834, 573);
-            this.Tbc_Aplicacoes.TabIndex = 2;
-            this.Tbc_Aplicacoes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tbc_Aplicacoes_MouseDown);
-            // 
             // Cha_GastoDiario
             // 
             this.Cha_GastoDiario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -259,10 +247,22 @@
             this.Cha_GastoDiario.Location = new System.Drawing.Point(15, 16);
             this.Cha_GastoDiario.Name = "Cha_GastoDiario";
             this.Cha_GastoDiario.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            this.Cha_GastoDiario.Size = new System.Drawing.Size(803, 399);
+            this.Cha_GastoDiario.Size = new System.Drawing.Size(494, 262);
             this.Cha_GastoDiario.TabIndex = 0;
             this.Cha_GastoDiario.Text = "chart1";
             this.Cha_GastoDiario.Click += new System.EventHandler(this.Cha_GastoDiario_Click);
+            // 
+            // Tbc_Aplicacoes
+            // 
+            this.Tbc_Aplicacoes.Controls.Add(this.Tab_Inicio);
+            this.Tbc_Aplicacoes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Tbc_Aplicacoes.ImageList = this.Iml_ListaTabPage;
+            this.Tbc_Aplicacoes.Location = new System.Drawing.Point(126, 0);
+            this.Tbc_Aplicacoes.Name = "Tbc_Aplicacoes";
+            this.Tbc_Aplicacoes.SelectedIndex = 0;
+            this.Tbc_Aplicacoes.Size = new System.Drawing.Size(834, 573);
+            this.Tbc_Aplicacoes.TabIndex = 2;
+            this.Tbc_Aplicacoes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tbc_Aplicacoes_MouseDown);
             // 
             // Frm_ControleFinanceiro
             // 
@@ -285,8 +285,8 @@
             this.Grp_Avatar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Avatar)).EndInit();
             this.Tab_Inicio.ResumeLayout(false);
-            this.Tbc_Aplicacoes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Cha_GastoDiario)).EndInit();
+            this.Tbc_Aplicacoes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
