@@ -32,6 +32,7 @@ namespace ControleFinanceiro.Visao.Cadastros
             Lbl_Observacao.Text = "Observação";
             Lbl_TipoMovimentacao.Text = "Tipo Movimentação";
             Lbl_Estabelecimento.Text = "Estabelecimento";
+            Lbl_DataPagamento.Text = "Dia Pag.";
             Txt_Codigo.Enabled = false;
             Ckb_AtivoInativo.Text = "Ativo";
             Btn_Editar.Text = "Editar";
@@ -49,7 +50,12 @@ namespace ControleFinanceiro.Visao.Cadastros
             Btn_Excluir.Enabled = false;
             Btn_Editar.Enabled = false;
             Btn_Cancelar.Enabled = false;
+            Cbo_DiaPagamento.Enabled = false;
             Btn_Cancelar.Text = "Cancelar";
+            for(int i =1; i<=31; i++)
+            {
+                Cbo_DiaPagamento.Items.Add(i);
+            }
         }
 
         private void Btn_Excluir_Click(object sender, EventArgs e)
@@ -92,6 +98,7 @@ namespace ControleFinanceiro.Visao.Cadastros
             Txt_CodigoEstabelecimento.Enabled = valor;
             Ckb_AtivoInativo.Enabled = valor;
             Txt_Observacao.Enabled = valor;
+            Cbo_DiaPagamento.Enabled = valor;
         }
         private bool ValidaFormulario()
         {
@@ -120,7 +127,7 @@ namespace ControleFinanceiro.Visao.Cadastros
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Color.Red);
                 temp += "Verifique o valor da Despesa. Não é possivel inserir despesa zerada.\r\n";
             }
-            if(Txt_Observacao.Text.Length> 100)
+            if (Txt_Observacao.Text.Length> 100)
             {
                 Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_Observacao, Color.Red);
                 temp += "Verifique o campo observação. Não é possivel inserir mais de 100 caracteres.\r\n";
@@ -152,6 +159,9 @@ namespace ControleFinanceiro.Visao.Cadastros
             Ckb_AtivoInativo.Checked = true;
             Ckb_AtivoInativo.Enabled = false;
             Txt_Observacao.Enabled = false;
+            Cbo_DiaPagamento.Enabled = false;
+            Cbo_DiaPagamento.SelectedItem = 0;
+            Cbo_DiaPagamento.Text = "";
             Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_NomeDespesa, Grp_DadosDespesaFixa.BackColor);
             Grp_DadosDespesaFixa.AlterarBordaComponente(Msk_Valor, Grp_DadosDespesaFixa.BackColor);
             Grp_DadosDespesaFixa.AlterarBordaComponente(Txt_CodigoEstabelecimento, Grp_DadosDespesaFixa.BackColor);
@@ -195,9 +205,11 @@ namespace ControleFinanceiro.Visao.Cadastros
             ValorFixo.Nome = Txt_NomeDespesa.Text;
             ValorFixo.Valor = double.Parse(Msk_Valor.Text);
             ValorFixo.Ativo = Ckb_AtivoInativo.Checked;
+            ValorFixo.DiaPagamento = Convert.ToInt32(Cbo_DiaPagamento.Text);
             ValorFixo.Movimentacao = Cbo_TipoMovimentacao.Text == "Entrada" ? "E" : "S";
             ValorFixo.Observacao = Txt_Observacao.Text;
             ValorFixo.Estabelecimento = estabelecimento;
+            ValorFixo.UsValoresFixos = Frm_ControleFinanceiro.GetusuarioLogado();
             return ValorFixo;
         }
 
@@ -325,7 +337,13 @@ namespace ControleFinanceiro.Visao.Cadastros
             Txt_Observacao.Text = valor.Observacao;
             Msk_Valor.Text = valor.Valor.ToString();
             Cbo_TipoMovimentacao.SelectedIndex = valor.Movimentacao == "E" ? 0 : 1;
+            Cbo_DiaPagamento.SelectedItem = valor.DiaPagamento;
             
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

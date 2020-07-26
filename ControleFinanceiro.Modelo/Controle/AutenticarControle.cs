@@ -1,5 +1,8 @@
 ﻿using ControleFinanceiro.Modelo;
+using ControleFinanceiro.Modelo.DAO;
+using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Excexoes;
+using ControleFinanceiro.Modelo.Helpers;
 using ControleFinanceiro.Negocio;
 using System;
 using System.Collections.Generic;
@@ -11,14 +14,20 @@ namespace ControleFinanceiro.Controle
 {
     public class AutenticarControle
     {
-        public void ControleSenhaValida(UsuarioModelo usuario)
+        public string Mensagem;
+        public bool ControleSenhaValida(string email, string senha)
         {
-            var autenticar =  AutenticarNegocio.ValidaSenha(usuario);
-            if (!autenticar)
+            var negocio = new AutenticarNegocio();
+            if (negocio.ValidarSenha(email, senha))
             {
-                throw new AutenticarException("Usuário ou senha Incorretos. Verifique");
+                return true;
             }
-
+            else
+            {
+                Mensagem = negocio.Mensagem;
+                return false;
+            }
+            
         }
     }
 }

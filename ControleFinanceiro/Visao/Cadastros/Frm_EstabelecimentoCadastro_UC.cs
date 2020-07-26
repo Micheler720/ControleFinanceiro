@@ -86,8 +86,18 @@ namespace ControleFinanceiro.Visao.Cadastros
                 if(int.Parse(X.id) == id)
                 {
                     Cbo_TipoEstabelecimento.SelectedIndex = i;
+                    break;
+                }                
+            }
+        }
+        private void SelecionarEstado(string estado)
+        {
+            for(int i = 0; i < Cbo_Estado.Items.Count; i++)
+            {
+                if(Cbo_Estado.Items[i] == estado)
+                {
+                    Cbo_Estado.SelectedIndex = i;
                 }
-                
             }
         }
        
@@ -192,7 +202,8 @@ namespace ControleFinanceiro.Visao.Cadastros
                 Cidade = Txt_Cidade.Text,
                 Complemento = Txt_Complemento.Text,
                 CEP = Msk_CEP.Text,
-                Tipo_Estabelecimento = tipoEstabelecimento
+                Tipo_Estabelecimento = tipoEstabelecimento,
+                UsEstabelecimento = Frm_ControleFinanceiro.GetusuarioLogado()
             };
             if (Cbo_Estado.SelectedIndex >= 0)
             {
@@ -257,7 +268,6 @@ namespace ControleFinanceiro.Visao.Cadastros
             Cbo_TipoEstabelecimento.Enabled = valor;
             Msk_CEP.Enabled = valor;
             Msk_Numero.Enabled = valor;
-            Cbo_Estado.SelectedIndex = -1;
         }
         private void LimparFormulario()
         {
@@ -449,7 +459,7 @@ namespace ControleFinanceiro.Visao.Cadastros
                 Btn_Excluir.Enabled = true;
                 Btn_Gravar.Enabled = false;
                 Btn_Novo.Enabled = false;
-                Btn_Cancelar.Enabled = false;
+                Btn_Cancelar.Enabled = false; 
 
             }
             

@@ -42,6 +42,8 @@
             this.Lbl_Codigo = new System.Windows.Forms.Label();
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Grp_DadosDespesaFixa = new System.Windows.Forms.GroupBox();
+            this.Cbo_DiaPagamento = new System.Windows.Forms.ComboBox();
+            this.Lbl_DataPagamento = new System.Windows.Forms.Label();
             this.Lbl_Observacao = new System.Windows.Forms.Label();
             this.Txt_Observacao = new System.Windows.Forms.TextBox();
             this.Ckb_AtivoInativo = new System.Windows.Forms.CheckBox();
@@ -113,7 +115,7 @@
             // 
             this.Txt_NomeDespesa.Location = new System.Drawing.Point(9, 140);
             this.Txt_NomeDespesa.Name = "Txt_NomeDespesa";
-            this.Txt_NomeDespesa.Size = new System.Drawing.Size(326, 20);
+            this.Txt_NomeDespesa.Size = new System.Drawing.Size(256, 20);
             this.Txt_NomeDespesa.TabIndex = 6;
             this.Txt_NomeDespesa.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Txt_NomeDespesa_KeyUp);
             // 
@@ -122,7 +124,7 @@
             this.Btn_Gravar.Location = new System.Drawing.Point(147, 324);
             this.Btn_Gravar.Name = "Btn_Gravar";
             this.Btn_Gravar.Size = new System.Drawing.Size(75, 23);
-            this.Btn_Gravar.TabIndex = 9;
+            this.Btn_Gravar.TabIndex = 10;
             this.Btn_Gravar.Text = "button2";
             this.Btn_Gravar.UseVisualStyleBackColor = true;
             this.Btn_Gravar.Click += new System.EventHandler(this.Btn_Gravar_Click);
@@ -175,6 +177,8 @@
             // 
             // Grp_DadosDespesaFixa
             // 
+            this.Grp_DadosDespesaFixa.Controls.Add(this.Cbo_DiaPagamento);
+            this.Grp_DadosDespesaFixa.Controls.Add(this.Lbl_DataPagamento);
             this.Grp_DadosDespesaFixa.Controls.Add(this.Lbl_Observacao);
             this.Grp_DadosDespesaFixa.Controls.Add(this.Txt_Observacao);
             this.Grp_DadosDespesaFixa.Controls.Add(this.Ckb_AtivoInativo);
@@ -198,6 +202,23 @@
             this.Grp_DadosDespesaFixa.Text = "groupBox1";
             this.Grp_DadosDespesaFixa.Enter += new System.EventHandler(this.Grp_DadosDespesaFixa_Enter);
             // 
+            // Cbo_DiaPagamento
+            // 
+            this.Cbo_DiaPagamento.FormattingEnabled = true;
+            this.Cbo_DiaPagamento.Location = new System.Drawing.Point(271, 139);
+            this.Cbo_DiaPagamento.Name = "Cbo_DiaPagamento";
+            this.Cbo_DiaPagamento.Size = new System.Drawing.Size(55, 21);
+            this.Cbo_DiaPagamento.TabIndex = 29;
+            // 
+            // Lbl_DataPagamento
+            // 
+            this.Lbl_DataPagamento.AutoSize = true;
+            this.Lbl_DataPagamento.Location = new System.Drawing.Point(269, 124);
+            this.Lbl_DataPagamento.Name = "Lbl_DataPagamento";
+            this.Lbl_DataPagamento.Size = new System.Drawing.Size(35, 13);
+            this.Lbl_DataPagamento.TabIndex = 28;
+            this.Lbl_DataPagamento.Text = "label2";
+            // 
             // Lbl_Observacao
             // 
             this.Lbl_Observacao.AutoSize = true;
@@ -213,12 +234,12 @@
             this.Txt_Observacao.Multiline = true;
             this.Txt_Observacao.Name = "Txt_Observacao";
             this.Txt_Observacao.Size = new System.Drawing.Size(432, 76);
-            this.Txt_Observacao.TabIndex = 8;
+            this.Txt_Observacao.TabIndex = 9;
             // 
             // Ckb_AtivoInativo
             // 
             this.Ckb_AtivoInativo.AutoSize = true;
-            this.Ckb_AtivoInativo.Location = new System.Drawing.Point(270, 51);
+            this.Ckb_AtivoInativo.Location = new System.Drawing.Point(272, 53);
             this.Ckb_AtivoInativo.Name = "Ckb_AtivoInativo";
             this.Ckb_AtivoInativo.Size = new System.Drawing.Size(80, 17);
             this.Ckb_AtivoInativo.TabIndex = 3;
@@ -279,17 +300,17 @@
             // 
             // Msk_Valor
             // 
-            this.Msk_Valor.Location = new System.Drawing.Point(341, 140);
+            this.Msk_Valor.Location = new System.Drawing.Point(333, 140);
             this.Msk_Valor.Name = "Msk_Valor";
-            this.Msk_Valor.Size = new System.Drawing.Size(100, 20);
-            this.Msk_Valor.TabIndex = 7;
+            this.Msk_Valor.Size = new System.Drawing.Size(108, 20);
+            this.Msk_Valor.TabIndex = 8;
             this.Msk_Valor.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Msk_Valor_MaskInputRejected);
             this.Msk_Valor.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_Valor_KeyUp);
             // 
             // Lbl_Valor
             // 
             this.Lbl_Valor.AutoSize = true;
-            this.Lbl_Valor.Location = new System.Drawing.Point(338, 124);
+            this.Lbl_Valor.Location = new System.Drawing.Point(334, 124);
             this.Lbl_Valor.Name = "Lbl_Valor";
             this.Lbl_Valor.Size = new System.Drawing.Size(35, 13);
             this.Lbl_Valor.TabIndex = 16;
@@ -354,5 +375,7 @@
         private System.Windows.Forms.Label Lbl_Observacao;
         private System.Windows.Forms.TextBox Txt_Observacao;
         private System.Windows.Forms.Button Btn_Cancelar;
+        private System.Windows.Forms.Label Lbl_DataPagamento;
+        private System.Windows.Forms.ComboBox Cbo_DiaPagamento;
     }
 }

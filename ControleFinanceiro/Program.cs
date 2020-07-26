@@ -18,6 +18,7 @@ namespace ControleFinanceiro
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //NHibernateHelper.GeraSchema();
             Application.Run(new Frm_Login());
         }
     }

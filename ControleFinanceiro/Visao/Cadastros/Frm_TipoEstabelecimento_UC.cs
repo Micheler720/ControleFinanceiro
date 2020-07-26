@@ -89,6 +89,7 @@ namespace ControleFinanceiro.Visao.Cadastros
             var tipoEstabelecimento = new Tipo_Estabelecimento();
             tipoEstabelecimento.Descricao = Txt_Descricao.Text;
             tipoEstabelecimento.Status = 1;
+            tipoEstabelecimento.UsTipoEstabelecimento = Frm_ControleFinanceiro.GetusuarioLogado();
             return tipoEstabelecimento;
         }
 

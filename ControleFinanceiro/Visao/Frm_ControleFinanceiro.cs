@@ -4,6 +4,7 @@ using ControleFinanceiro.Modelo.Controle;
 using ControleFinanceiro.Modelo.Entidades;
 using ControleFinanceiro.Modelo.Modelo;
 using ControleFinanceiro.Visao.Cadastros;
+using ControleFinanceiro.Visao.Integrações;
 using ControleFinanceiro.Visao.Movimentacoes;
 using Microsoft.SqlServer.Server;
 using System;
@@ -21,18 +22,36 @@ namespace ControleFinanceiro.Visao
 {
     public partial class Frm_ControleFinanceiro : Form
     {
+        private static Usuario usuarioLogado1;
 
-        public Frm_ControleFinanceiro(Frm_Login L, UsuarioModelo usuario)
+        public static Usuario GetusuarioLogado()
+        {
+            return usuarioLogado1;
+        }
+
+        private static void SetusuarioLogado(Usuario value)
+        {
+            usuarioLogado1 = value;
+        }
+
+        public Frm_ControleFinanceiro(Frm_Login L, Usuario usuario)
         {
             InitializeComponent();
-            Lbl_Usuario.Text = usuario.Usuario;
-            var MyAvatar = (Image)global::ControleFinanceiro.Properties.Resources.ResourceManager.GetObject("avatar");
-            Pic_Avatar.Image = MyAvatar;
-            Pic_Avatar.SizeMode = PictureBoxSizeMode.Zoom;
+            Lik_Usuario.Text = usuario.Nome;
+            if(usuario.Foto is null)
+            {
+                var MyAvatar = (Image)global::ControleFinanceiro.Properties.Resources.ResourceManager.GetObject("avatar");
+                Pic_Avatar.Image = MyAvatar;
+            }
+            else
+            {
+                Pic_Avatar.Image = Image.FromFile(usuario.Foto);
+            }
+            Pic_Avatar.SizeMode = PictureBoxSizeMode.StretchImage;
             Tab_Inicio.Text = "Inicio";
             Tab_Inicio.ImageIndex = 5;
             configurarGrafico();
-
+            SetusuarioLogado(usuario);
             // L.Close();
         }
         private void configurarGrafico()
@@ -52,7 +71,7 @@ namespace ControleFinanceiro.Visao
         private Title CreateTitle()
         {
             Title title = new Title();
-            title.Text = "Gráfico de Movimentações ultimos 15 dias";
+            title.Text = "Gráfico de Movimentações ultimos 30 dias";
             title.ShadowColor = Color.FromArgb(32, 100, 0, 0);
             // title.ShadowColor = Color.FromArgb(32, 0, 0, 0);
             title.Font = new Font("Trebuchet MS", 14F, FontStyle.Bold);
@@ -62,7 +81,7 @@ namespace ControleFinanceiro.Visao
         }
         private void preencherGrafico(List<RelAgrupadoPorData> lancamentos, string nome, Color cor)
         {
-            TimeSpan dias = new TimeSpan(15, 0, 0, 0, 0);
+            TimeSpan dias = new TimeSpan(30, 0, 0, 0, 0);
             var UltimoDia = DateTime.Now.Subtract(dias);
             var series1 = new Series
             {
@@ -76,7 +95,7 @@ namespace ControleFinanceiro.Visao
                 BorderWidth = 3
             };
             Cha_GastoDiario.Series.Add(series1);
-            for (int i = 1; i<=15; i++)
+            for (int i = 1; i<=30; i++)
             {
                 foreach (var item in lancamentos)
                 {
@@ -106,7 +125,6 @@ namespace ControleFinanceiro.Visao
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void Frm_ControleFinanceiro_Load(object sender, EventArgs e)
@@ -319,6 +337,36 @@ namespace ControleFinanceiro.Visao
         private void Cha_GastoDiario_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var U = new Frm_LoginIntegracoes();
+            var TB = new TabPage();
+            TB.Text = "Integrações";
+            TB.Name = "Integrações";
+            //TB.ImageIndex = 9;
+            TB.Controls.Add(U);
+            Tbc_Aplicacoes.Controls.Add(TB);
+            SelecionarUltimaTabPage();
+        }
+
+        private void Tab_Inicio_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Lik_Usuario_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var usuarioLogado = GetusuarioLogado();
+            var F = new Frm_DadosUsuario(2, usuarioLogado.Id);
+            if(F.ShowDialog() == DialogResult.OK)
+            {
+                var controle = new UsuarioControle();
+                SetusuarioLogado(controle.buscarUsuarioId(GetusuarioLogado().Id));
+                Pic_Avatar.Image = Image.FromFile(GetusuarioLogado().Foto);
+                Lik_Usuario.Text = GetusuarioLogado().Nome;
+            }
         }
     }
 }

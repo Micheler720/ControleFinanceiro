@@ -34,15 +34,27 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Lbl_Legenda.Text = "Campos com * são obrigátorios";
             Grp_DadosMovimentacoes.Text = "Dados Entrada";
             Btn_BuscaEstabelecimento.Text = "...";
+            Btn_Similar.Text = "Similar";
             Btn_Editar.Text = "Editar";
             Btn_Excluir.Text = "Excluir";
             Btn_Novo.Text = "Novo";
             Btn_Gravar.Text = "Gravar";
+            Lbl_DataPagamento.Text = "Data Pag.";
             Btn_BuscaEstabelecimento.Text = "...";
             Lbl_DataInclusao.Text = "Data Inclusão";
             Dat_Inclusão.Enabled = false;
             Btn_Cancelar.Enabled = false;
             Btn_Cancelar.Text = "Cancelar";
+            Grp_Similar.Visible = false;
+            Rdb_Unico.Text = "Uníco";
+            Rdb_Varios.Text = "Várias Parcelas";
+            Msk_Parcelas.Enabled = false;
+            Lbl_Parcelas.Text = "Nº Parcelas";
+            Grp_Similar.Text = "Similar Lançamento";
+            Lbl_Parcela.Text = "Parcela";
+            Txt_Parcela.Enabled = false;
+            Btn_Gerar.Text = "Gerar";
+            Btn_CancelarSimilar.Text = "Cancelar";
             LimparFormulario();
         }
         private void LimparFormulario()
@@ -63,8 +75,10 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Txt_NomeEstabelecimento.Text = "";
             Btn_BuscaEstabelecimento.Enabled = false;
             Txt_Observacao.Enabled = false;
+            Btn_Similar.Enabled = false;
             Msk_Valor.Enabled = false;
             Dat_DataLancamento.Enabled = false;
+            Dat_Pagamento.Enabled = false;
             Txt_Documento.Enabled = false;
             Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_Valor,Grp_DadosMovimentacoes.BackColor);
             Grp_DadosMovimentacoes.AlterarBordaComponente(Msk_CodigoEstabelecimento,Grp_DadosMovimentacoes.BackColor);
@@ -82,6 +96,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Msk_Valor.Enabled = valor;
             Dat_DataLancamento.Enabled = valor;
             Txt_Documento.Enabled = valor;
+            Dat_Pagamento.Enabled = valor;
         }
         private bool ValidaFormulario()
         {
@@ -105,6 +120,11 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             {
                 Grp_DadosMovimentacoes.AlterarBordaComponente(Txt_Documento, Color.Red);
                 temp += "Verifique o numero do documento. \r\n";
+            }
+            if (Dat_Pagamento.Value < Dat_DataLancamento.Value)
+            {
+                Grp_DadosMovimentacoes.AlterarBordaComponente(Dat_Pagamento, Color.Red);
+                temp += "Verifique a data de pagamento. Não é possível que seja menor que a data do lançamento . \r\n";
             }
             if (temp != "")
             {
@@ -132,7 +152,9 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Gravar.Enabled = true;
             Btn_BuscaEstabelecimento.Enabled = true;
             Btn_Cancelar.Enabled = true;
+            Btn_Similar.Enabled = false;
             Txt_Observacao.Enabled = true;
+            Dat_Pagamento.Enabled = true;
             Msk_Valor.Enabled = true;
             Msk_CodigoEstabelecimento.Enabled = true;
             Dat_DataLancamento.Enabled = true;
@@ -172,6 +194,8 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Entrada.Observacao = Txt_Observacao.Text;
             Entrada.Documento = Txt_Documento.Text;
             Entrada.Estabelecimento = estabelecimento;
+            Entrada.Data_Pagamento = Dat_Pagamento.Value;
+            Entrada.UsLancamento = Frm_ControleFinanceiro.GetusuarioLogado();
             return Entrada;
         }
 
@@ -237,7 +261,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             var F = new Frm_BuscaEstabelecimento(estabelecimentos);
             F.ShowDialog();
             Txt_NomeEstabelecimento.Text =  F.NomeEstabelecimento;
-            Msk_CodigoEstabelecimento.Text = F.IdSelect.ToString();
+            Msk_CodigoEstabelecimento.Text = "12";
         }
 
         private void abrirToolStripButton_Click(object sender, EventArgs e)
@@ -255,6 +279,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 Btn_Excluir.Enabled = true;
                 Btn_Editar.Enabled = true;
                 Btn_Cancelar.Enabled = false;
+                Btn_Similar.Enabled = true;
                 HabilitarDesabilitarComponentes(false);
 
             }
@@ -264,6 +289,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
         {
             if(Lancamento != null)
             {
+                Txt_Parcela.Text = Lancamento.Parcela.ToString();
                 Txt_Codigo.Text = Lancamento.Id.ToString();
                 Txt_Documento.Text = Lancamento.Documento;
                 Txt_NomeEstabelecimento.Text = Lancamento.Estabelecimento.Nome;
@@ -272,6 +298,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 Dat_Inclusão.Value = Lancamento.Data_Inclusao;
                 Msk_Valor.Text = Lancamento.Valor.ToString("F");
                 Msk_CodigoEstabelecimento.Text = Lancamento.Estabelecimento.Id.ToString();
+                Dat_Pagamento.Value = Lancamento.Data_Pagamento;
             }
         }
 
@@ -283,6 +310,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             Btn_Excluir.Enabled = false;
             Btn_Gravar.Enabled = true;
             Btn_Novo.Enabled = false;
+            Btn_Similar.Enabled = false;
             HabilitarDesabilitarComponentes(true);
         }
 
@@ -297,6 +325,7 @@ namespace ControleFinanceiro.Visao.Movimentacoes
                 controleFinanceiro.ExcluirEntrada(Entrada);
                 MessageBox.Show(controleFinanceiro.Mensagem, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparFormulario();
+                Btn_Similar.Enabled = false;
             }
         }
 
@@ -306,8 +335,91 @@ namespace ControleFinanceiro.Visao.Movimentacoes
             if(M == DialogResult.OK)
             {
                 LimparFormulario();
+                Btn_Similar.Enabled = true;
                 HabilitarDesabilitarComponentes(false);
             }
+        }
+
+        private void Btn_Similar_Click(object sender, EventArgs e)
+        {
+            Grp_Similar.Visible = true;
+        }
+
+        private void Rdb_Varios_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Rdb_Varios.Checked)
+            {
+                Msk_Parcelas.Enabled = true;
+            }
+        }
+
+        private void Rdb_Unico_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Rdb_Unico.Checked)
+            {
+                Msk_Parcelas.Enabled = false;
+            }
+        }
+
+        private void Btn_Gerar_Click(object sender, EventArgs e)
+        {
+            Operacao = "Novo";
+            var lancamento = CapturarFormulario();            
+            var lancamentoSemelhante = new Valores_Fixos
+            {
+                Valor = lancamento.Valor,
+                Movimentacao = "E",
+                Estabelecimento = lancamento.Estabelecimento,
+                Observacao = lancamento.Observacao,
+                DiaPagamento = lancamento.Data_Pagamento.Day,
+                Nome = "Similar lancamento"
+            };
+            if (Rdb_Unico.Checked)
+            {
+                var lancamentos = new List<Valores_Fixos>();
+                lancamentos.Add(lancamentoSemelhante);
+                SimilarUnico(lancamentos);
+            }
+            else
+            {
+                SimilarVarios(lancamentoSemelhante);
+            }
+        }
+        private void SimilarVarios(Valores_Fixos lancamento)
+        {
+            var Lancamentos = new List<Valores_Fixos>();
+            var QuantParcelas = Convert.ToInt32(Msk_Parcelas.Text);
+            lancamento.Parcela = QuantParcelas;
+            Lancamentos.Add(lancamento);
+            var F = new Frm_ImportaMovimentacaoFixa(Lancamentos,1);
+            F.TipoOperacao = 1;
+            F.ShowDialog();
+            Grp_Similar.Visible = false;
+        }
+        private void SimilarUnico(List<Valores_Fixos> lancamentos)
+        {
+            var M = MessageBox.Show("Será incluído um lancamento de entrada. Deseja alterar alguma informação?", "Similar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (M == DialogResult.Yes)
+            {
+                var F = new Frm_ImportaMovimentacaoFixa(lancamentos);
+                F.ShowDialog();
+            }
+            else
+            {
+                var Entrada = CapturarFormulario();
+                var controleEntrada = new FinReceberControle();
+                if (Operacao == "Novo")
+                {
+                    controleEntrada.GravarEntrada(Entrada);
+                }
+                MessageBox.Show(controleEntrada.Mensagem, "Aviso Gravação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            Grp_Similar.Visible = false;
+        }
+
+        private void Btn_CancelarSimilar_Click(object sender, EventArgs e)
+        {
+            Grp_Similar.Visible = false;
         }
     }
 }

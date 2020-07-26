@@ -30,13 +30,19 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_ControleFinanceiro));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.Mnu_Aplicacao = new System.Windows.Forms.MenuStrip();
             this.cadastrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tipoEstabelecimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estabelecimentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.despesasFixasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.integraçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nubankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.movimentaçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entradasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saídasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,17 +51,20 @@
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Iml_ListaTabPage = new System.Windows.Forms.ImageList(this.components);
             this.Grp_Avatar = new System.Windows.Forms.GroupBox();
-            this.Lbl_Usuario = new System.Windows.Forms.Label();
+            this.Lik_Usuario = new System.Windows.Forms.LinkLabel();
             this.Pic_Avatar = new System.Windows.Forms.PictureBox();
             this.Tab_Inicio = new System.Windows.Forms.TabPage();
             this.Cha_GastoDiario = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.Tbc_Aplicacoes = new System.Windows.Forms.TabControl();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Mnu_Aplicacao.SuspendLayout();
             this.Grp_Avatar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Avatar)).BeginInit();
             this.Tab_Inicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Cha_GastoDiario)).BeginInit();
             this.Tbc_Aplicacoes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // Mnu_Aplicacao
@@ -66,12 +75,13 @@
             this.Mnu_Aplicacao.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Mnu_Aplicacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastrosToolStripMenuItem,
+            this.integraçõesToolStripMenuItem,
             this.movimentaçõesToolStripMenuItem,
             this.fecharAbaToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.Mnu_Aplicacao.Location = new System.Drawing.Point(0, 0);
             this.Mnu_Aplicacao.Name = "Mnu_Aplicacao";
-            this.Mnu_Aplicacao.Size = new System.Drawing.Size(126, 573);
+            this.Mnu_Aplicacao.Size = new System.Drawing.Size(126, 703);
             this.Mnu_Aplicacao.TabIndex = 1;
             this.Mnu_Aplicacao.Text = "Menu";
             this.Mnu_Aplicacao.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.Mnu_Aplicacao_ItemClicked);
@@ -115,6 +125,33 @@
             this.despesasFixasToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.despesasFixasToolStripMenuItem.Text = "Valores Fixos";
             this.despesasFixasToolStripMenuItem.Click += new System.EventHandler(this.despesasFixasToolStripMenuItem_Click);
+            // 
+            // integraçõesToolStripMenuItem
+            // 
+            this.integraçõesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nubankToolStripMenuItem});
+            this.integraçõesToolStripMenuItem.Image = global::ControleFinanceiro.Properties.Resources.integracao;
+            this.integraçõesToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.integraçõesToolStripMenuItem.Name = "integraçõesToolStripMenuItem";
+            this.integraçõesToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10, 0, 4, 10);
+            this.integraçõesToolStripMenuItem.Size = new System.Drawing.Size(113, 30);
+            this.integraçõesToolStripMenuItem.Text = "Integrações";
+            this.integraçõesToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // nubankToolStripMenuItem
+            // 
+            this.nubankToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginToolStripMenuItem});
+            this.nubankToolStripMenuItem.Name = "nubankToolStripMenuItem";
+            this.nubankToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.nubankToolStripMenuItem.Text = "Nubank";
+            // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.loginToolStripMenuItem.Text = "Login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
             // 
             // movimentaçõesToolStripMenuItem
             // 
@@ -189,65 +226,70 @@
             this.Iml_ListaTabPage.Images.SetKeyName(7, "GastosFixos.png");
             this.Iml_ListaTabPage.Images.SetKeyName(8, "TipoEstabelecimento.png");
             this.Iml_ListaTabPage.Images.SetKeyName(9, "Saidas.png");
+            this.Iml_ListaTabPage.Images.SetKeyName(10, "integracao.png");
             // 
             // Grp_Avatar
             // 
             this.Grp_Avatar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Grp_Avatar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Grp_Avatar.Controls.Add(this.Lbl_Usuario);
+            this.Grp_Avatar.Controls.Add(this.Lik_Usuario);
             this.Grp_Avatar.Controls.Add(this.Pic_Avatar);
             this.Grp_Avatar.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Grp_Avatar.Location = new System.Drawing.Point(0, 429);
+            this.Grp_Avatar.Location = new System.Drawing.Point(0, 524);
             this.Grp_Avatar.Name = "Grp_Avatar";
-            this.Grp_Avatar.Size = new System.Drawing.Size(126, 144);
+            this.Grp_Avatar.Size = new System.Drawing.Size(126, 179);
             this.Grp_Avatar.TabIndex = 1;
             this.Grp_Avatar.TabStop = false;
             this.Grp_Avatar.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // Lbl_Usuario
+            // Lik_Usuario
             // 
-            this.Lbl_Usuario.AutoSize = true;
-            this.Lbl_Usuario.Font = new System.Drawing.Font("Comic Sans MS", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Usuario.Location = new System.Drawing.Point(8, 103);
-            this.Lbl_Usuario.Name = "Lbl_Usuario";
-            this.Lbl_Usuario.Size = new System.Drawing.Size(40, 16);
-            this.Lbl_Usuario.TabIndex = 2;
-            this.Lbl_Usuario.Text = "label1";
+            this.Lik_Usuario.AutoSize = true;
+            this.Lik_Usuario.Location = new System.Drawing.Point(5, 154);
+            this.Lik_Usuario.Name = "Lik_Usuario";
+            this.Lik_Usuario.Size = new System.Drawing.Size(61, 16);
+            this.Lik_Usuario.TabIndex = 3;
+            this.Lik_Usuario.TabStop = true;
+            this.Lik_Usuario.Text = "linkLabel1";
+            this.Lik_Usuario.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Lik_Usuario_LinkClicked);
             // 
             // Pic_Avatar
             // 
-            this.Pic_Avatar.Location = new System.Drawing.Point(8, 28);
+            this.Pic_Avatar.Location = new System.Drawing.Point(8, 22);
             this.Pic_Avatar.Name = "Pic_Avatar";
-            this.Pic_Avatar.Size = new System.Drawing.Size(112, 68);
+            this.Pic_Avatar.Size = new System.Drawing.Size(112, 129);
             this.Pic_Avatar.TabIndex = 1;
             this.Pic_Avatar.TabStop = false;
             // 
             // Tab_Inicio
             // 
+            this.Tab_Inicio.Controls.Add(this.groupBox1);
+            this.Tab_Inicio.Controls.Add(this.chart1);
             this.Tab_Inicio.Controls.Add(this.Cha_GastoDiario);
             this.Tab_Inicio.ImageIndex = 5;
             this.Tab_Inicio.Location = new System.Drawing.Point(4, 23);
             this.Tab_Inicio.Name = "Tab_Inicio";
             this.Tab_Inicio.Padding = new System.Windows.Forms.Padding(3);
-            this.Tab_Inicio.Size = new System.Drawing.Size(826, 546);
+            this.Tab_Inicio.Size = new System.Drawing.Size(1001, 676);
             this.Tab_Inicio.TabIndex = 0;
             this.Tab_Inicio.Text = "tabPage1";
             this.Tab_Inicio.UseVisualStyleBackColor = true;
+            this.Tab_Inicio.Click += new System.EventHandler(this.Tab_Inicio_Click);
             // 
             // Cha_GastoDiario
             // 
             this.Cha_GastoDiario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.Name = "ChartArea1";
-            this.Cha_GastoDiario.ChartAreas.Add(chartArea1);
-            legend1.ItemColumnSpacing = 1;
-            legend1.Name = "Legend1";
-            this.Cha_GastoDiario.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.Cha_GastoDiario.ChartAreas.Add(chartArea2);
+            legend2.ItemColumnSpacing = 1;
+            legend2.Name = "Legend1";
+            this.Cha_GastoDiario.Legends.Add(legend2);
             this.Cha_GastoDiario.Location = new System.Drawing.Point(15, 16);
             this.Cha_GastoDiario.Name = "Cha_GastoDiario";
             this.Cha_GastoDiario.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.EarthTones;
-            this.Cha_GastoDiario.Size = new System.Drawing.Size(494, 262);
+            this.Cha_GastoDiario.Size = new System.Drawing.Size(978, 338);
             this.Cha_GastoDiario.TabIndex = 0;
             this.Cha_GastoDiario.Text = "chart1";
             this.Cha_GastoDiario.Click += new System.EventHandler(this.Cha_GastoDiario_Click);
@@ -260,16 +302,41 @@
             this.Tbc_Aplicacoes.Location = new System.Drawing.Point(126, 0);
             this.Tbc_Aplicacoes.Name = "Tbc_Aplicacoes";
             this.Tbc_Aplicacoes.SelectedIndex = 0;
-            this.Tbc_Aplicacoes.Size = new System.Drawing.Size(834, 573);
+            this.Tbc_Aplicacoes.Size = new System.Drawing.Size(1009, 703);
             this.Tbc_Aplicacoes.TabIndex = 2;
             this.Tbc_Aplicacoes.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tbc_Aplicacoes_MouseDown);
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(-1, 430);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(460, 190);
+            this.chart1.TabIndex = 1;
+            this.chart1.Text = "chart1";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(474, 430);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(342, 197);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // Frm_ControleFinanceiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(960, 573);
+            this.ClientSize = new System.Drawing.Size(1135, 703);
             this.Controls.Add(this.Tbc_Aplicacoes);
             this.Controls.Add(this.Grp_Avatar);
             this.Controls.Add(this.Mnu_Aplicacao);
@@ -287,6 +354,7 @@
             this.Tab_Inicio.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Cha_GastoDiario)).EndInit();
             this.Tbc_Aplicacoes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,12 +373,17 @@
         private System.Windows.Forms.ToolStripMenuItem saldoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;
         private System.Windows.Forms.GroupBox Grp_Avatar;
-        private System.Windows.Forms.Label Lbl_Usuario;
         private System.Windows.Forms.PictureBox Pic_Avatar;
         private System.Windows.Forms.ImageList Iml_ListaTabPage;
         private System.Windows.Forms.ToolStripMenuItem fecharAbaToolStripMenuItem;
         private System.Windows.Forms.TabPage Tab_Inicio;
         private System.Windows.Forms.TabControl Tbc_Aplicacoes;
         private System.Windows.Forms.DataVisualization.Charting.Chart Cha_GastoDiario;
+        private System.Windows.Forms.ToolStripMenuItem integraçõesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nubankToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.LinkLabel Lik_Usuario;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

@@ -71,6 +71,16 @@ namespace ControleFinanceiro.Properties {
         }
         
         /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Icon semelhante a (Ícone).
+        /// </summary>
+        internal static System.Drawing.Icon avatar1 {
+            get {
+                object obj = ResourceManager.GetObject("avatar1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cadastros {
@@ -183,6 +193,16 @@ namespace ControleFinanceiro.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap integracao {
+            get {
+                object obj = ResourceManager.GetObject("integracao", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LimparBarra {
             get {
                 object obj = ResourceManager.GetObject("LimparBarra", resourceCulture);
@@ -266,6 +286,16 @@ namespace ControleFinanceiro.Properties {
         internal static System.Drawing.Bitmap TipoEstabelecimento {
             get {
                 object obj = ResourceManager.GetObject("TipoEstabelecimento", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Visualizar {
+            get {
+                object obj = ResourceManager.GetObject("Visualizar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

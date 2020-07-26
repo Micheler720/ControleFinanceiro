@@ -8,14 +8,20 @@ namespace ControleFinanceiro.Modelo
 {
     public class UsuarioModelo
     {
-        public string Usuario { get; private set; }
+        public string Email { get; private set; }
         public string Senha { get; private set; }
-        public int Id { get; private set; }
-
-        public UsuarioModelo (string usuario, string senha)
+        public string Nome { get; set; }
+        public int Id { get; set; }
+        public int Sexo { get; private set; }
+        public string CamminhoFoto { get; private set; }
+        public UsuarioModelo (string email, string senha)
         {
-            Usuario = usuario;
+            Email = email;
             Senha = senha;
+        }
+        public override string ToString()
+        {
+            return Email;
         }
     }
 }
