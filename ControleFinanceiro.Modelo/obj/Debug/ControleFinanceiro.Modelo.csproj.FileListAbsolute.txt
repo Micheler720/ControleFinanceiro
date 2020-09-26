@@ -110,3 +110,4 @@ C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Deb
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Ubiety.Dns.Core.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Zstandard.Net.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\MySql.Data.xml
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\hibernate.cfg.xml

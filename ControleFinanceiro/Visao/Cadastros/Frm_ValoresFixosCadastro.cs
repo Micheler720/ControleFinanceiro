@@ -52,6 +52,7 @@ namespace ControleFinanceiro.Visao.Cadastros
             Btn_Cancelar.Enabled = false;
             Cbo_DiaPagamento.Enabled = false;
             Btn_Cancelar.Text = "Cancelar";
+            Msk_Valor.Mask = "000.00";
             for(int i =1; i<=31; i++)
             {
                 Cbo_DiaPagamento.Items.Add(i);

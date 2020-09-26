@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ControleFinanceiro",
+    "\\ControleFinanceiro\\Visao"
   ],
+  "SelectedNode": "\\ControleFinanceiro\\Visao\\Frm_DadosUsuario.resx",
   "PreviewInSolutionExplorer": false
 }

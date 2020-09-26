@@ -205,5 +205,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Mapeamento\Usuario.hbm.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="hibernate.cfg.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
