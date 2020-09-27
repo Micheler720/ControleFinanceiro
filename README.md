@@ -1,5 +1,7 @@
 **Sobre**
+
 Desenvolvimento de sistema em C# com objetivo de aplicar conhecimentos em curso de formação .Net Alura.
+
 🚀 **Tecnologias**
 
 C#
@@ -11,8 +13,15 @@ Windows Form
 MySQL
 
 💥 **Como Executar**
-**Pré-requisitos**
+
 Download do projeto https://github.com/Micheler720/ControleFinanceiro.git
+
+**Pré-requisitos**
+
+MySQL5 instalado 
+
+
+
 
 
 📝 Licença
