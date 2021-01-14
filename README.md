@@ -15,15 +15,12 @@ MySQL
 💥 **Como Executar**
 
 Download do projeto https://github.com/Micheler720/ControleFinanceiro.git
+Arquivo program.cs descomentar a linha com comando GeraSchema.
+
+
 
 **Pré-requisitos**
 
 MySQL5 instalado 
 
-
-
-
-
-📝 Licença
-Esse projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
-
+Nome da database controlefinanceiro
