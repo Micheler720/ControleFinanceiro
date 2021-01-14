@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ControleFinanceiro.Modelo"
+  namespace="ControleFinanceiro.Modelo.Entidades">
+	<class name="Usuario">
+		<cache usage="nonstrict-read-write"/>
+		<id name="Id">
+			<generator class="identity" />
+		</id>
+		<property name="Nome" />
+		<property name="Email" />
+		<property name="Senha" />
+		<property name="Foto" />
+		<property name="Sexo" />
+	</class>
+</hibernate-mapping>

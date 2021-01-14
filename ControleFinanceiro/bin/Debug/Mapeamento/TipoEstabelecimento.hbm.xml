@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ControleFinanceiro.Modelo"
+  namespace="ControleFinanceiro.Modelo.Entidades">
+  <class name="Tipo_Estabelecimento">
+    <cache usage="nonstrict-read-write"/>
+    <id name="Id">
+      <generator class="identity" />
+    </id>
+    <property name="Descricao" />
+    <property name="Status" />
+	<many-to-one name="UsTipoEstabelecimento" column="Us_cod" fetch="join" />
+    <bag name="Estabelecimentos" fetch="join" batch-size="10">
+      <key column="Cod_Tipo_Estabelecimento" />
+      <one-to-many class="Estabelecimento" />
+    </bag>
+  </class>
+</hibernate-mapping>

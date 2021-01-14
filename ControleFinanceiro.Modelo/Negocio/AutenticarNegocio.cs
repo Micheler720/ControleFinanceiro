@@ -18,6 +18,7 @@ namespace ControleFinanceiro.Negocio
     {
         private Hash crip = new Hash(SHA512.Create());
         internal string Mensagem;
+        
         internal bool ValidarSenha(string email, string senha)
         {
             var session = NHibernateHelper.AbreSession();

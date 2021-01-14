@@ -99,7 +99,7 @@ namespace ControleFinanceiro.Visao
             {
                 foreach (var item in lancamentos)
                 {
-                    if (item.Data.ToShortDateString() == UltimoDia.ToShortDateString())
+                    if (item.Data.AddHours(0).ToShortDateString() == UltimoDia.AddHours(0).ToShortDateString())
                     {                        
                         series1.Points.AddXY(UltimoDia.ToString("dd/MM"), item.Valor);
                         UltimoDia = UltimoDia.AddDays(1);

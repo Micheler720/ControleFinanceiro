@@ -517,5 +517,10 @@ namespace ControleFinanceiro.Visao.Cadastros
                 Btn_Excluir.Enabled = false;
             }
         }
+
+        private void Msk_CEP_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 }

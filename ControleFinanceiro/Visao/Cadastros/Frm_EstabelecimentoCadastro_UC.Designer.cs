@@ -266,6 +266,7 @@
             this.Msk_CEP.Name = "Msk_CEP";
             this.Msk_CEP.Size = new System.Drawing.Size(100, 20);
             this.Msk_CEP.TabIndex = 4;
+            this.Msk_CEP.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.Msk_CEP_MaskInputRejected);
             this.Msk_CEP.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Msk_CEP_KeyUp);
             // 
             // Cbo_Estado

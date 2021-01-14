@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ControleFinanceiro.Modelo"
+  namespace="ControleFinanceiro.Modelo.Entidades">
+  <class name="Estabelecimento">
+    <cache usage="nonstrict-read-write"/>
+    <id name="Id">
+      <generator class="identity" />
+    </id>
+    <property name="Nome" />
+    <property name="Cidade" />
+    <property name="Endereco" />
+    <property name="Bairro" />
+    <property name="Numero" />
+    <property name="Complemento" />
+    <many-to-one name="Tipo_Estabelecimento" column="Cod_Tipo_Estabelecimento" fetch="join"/>
+    <property name="CEP" />
+	<property name="Estado" />
+	<many-to-one name="UsEstabelecimento" column="Us_cod" fetch="join"/>
+    <!--<bag name="Fin_Pagars" fetch="join">
+      <key column="Cod_Estabelecimento" />
+      <one-to-many class="Fin_Pagar" />
+    </bag>-->
+    <!--<bag name="Fin_Recebers" fetch="join">
+      <key column="Cod_Estabelecimento" />
+    </bag> -->
+    <!--<bag name="Valores_Fixoss" fetch="join">
+      <key column="Cod_Estabelecimento" />
+      <one-to-many class="Valores_Fixos" />
+    </bag>-->
+  </class>
+  
+</hibernate-mapping>

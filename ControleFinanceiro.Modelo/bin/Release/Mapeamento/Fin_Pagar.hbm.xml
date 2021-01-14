@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ControleFinanceiro.Modelo"
+  namespace="ControleFinanceiro.Modelo.Entidades">
+  <class name="Fin_Pagar">
+    <cache usage="nonstrict-read-write"/>
+    <id name="Id">
+      <generator class="identity" />
+    </id>
+    <property name="Documento" />
+    <property name="Data_Lancamento" type="date"/>
+    <property name="Data_Inclusao" type="date" />
+    <property name="Data_Pagamento" type="date" />
+    <many-to-one name="Estabelecimento" column="Cod_Estabelecimento" fetch="join" />
+    <property name="Valor" />
+    <property name="Observacao" />
+	<property name="Parcela" />
+	<property name="Importado" />
+	<many-to-one name="UsLancamento" column="Us_cod" fetch="join" />
+  </class>
+</hibernate-mapping>

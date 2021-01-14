@@ -53,6 +53,7 @@ C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Deb
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\RestSharp.Serializers.Newtonsoft.Json.dll
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\System.Drawing.Common.dll
 C:\Users\Admin\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\RestSharp.xml
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\hibernate.cfg.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Mapeamento\Fin_Pagar.hbm.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Mapeamento\Fin_Receber.hbm.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Mapeamento\Valores_Fixos.hbm.xml
@@ -68,6 +69,7 @@ C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Deb
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Compression.LZ4.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Compression.LZ4.Streams.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\MySql.Data.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Newtonsoft.Json.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NHibernate.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NServiceBus.Core.dll
@@ -83,12 +85,15 @@ C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Deb
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\System.Memory.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Zstandard.Net.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Antlr3.Runtime.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Google.Protobuf.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Iesi.Collections.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Compression.LZ4.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Compression.LZ4.Streams.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\MySql.Data.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Newtonsoft.Json.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NHibernate.xml
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\NServiceBus.Core.pdb
@@ -106,8 +111,3 @@ C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Deb
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.csproj.CopyComplete
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.dll
 C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\obj\Debug\ControleFinanceiro.Modelo.pdb
-C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\MySql.Data.dll
-C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Ubiety.Dns.Core.dll
-C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\Zstandard.Net.dll
-C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\MySql.Data.xml
-C:\Users\miche\source\repos\ControleFinanceiro\ControleFinanceiro.Modelo\bin\Debug\hibernate.cfg.xml

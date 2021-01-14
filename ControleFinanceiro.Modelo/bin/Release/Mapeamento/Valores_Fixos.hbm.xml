@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+  assembly="ControleFinanceiro.Modelo"
+  namespace="ControleFinanceiro.Modelo.Entidades">
+  <class name="Valores_Fixos">
+    <id name="Id">
+      <generator class="identity" />
+    </id>
+    <property name="Nome" />
+    <property name="Valor" />
+    <property name="Ativo" />
+    <property name="Movimentacao" />
+	  <many-to-one name="Estabelecimento" column="Cod_Estabelecimento" fetch="join" />
+	  <many-to-one name="UsValoresFixos" column="Us_cod" fetch="join" />
+    <property name="Observacao" />
+    <property name="DiaPagamento" />
+    <property name="Parcela" />
+  </class>
+</hibernate-mapping>
